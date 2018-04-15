@@ -3,18 +3,20 @@ require("arrangements")
 
 
 #======================== A Part =================
-# Muestreo con reemplazamiento  a
+# Muestreo con reemplazamiento  
 
 
 pob = c(13.9, 11.5, 16.7, 14.4, 14.6, 15.1)
 #combinations(x=pob, k =3, replace=TRUE)
 
 p = permutations(x=pob, k =3, replace=TRUE)
+#permutation with replacement 
 
 m = matrix(p, nrow = 216, ncol = 3)
-media = (matrix(m[,1]) + matrix(m[,2]) +matrix(m[,3]))/3
-pob_media = cbind(m, media[,1]) 
 
+media = (matrix(m[,1]) + matrix(m[,2]) +matrix(m[,3]))/3
+
+pob_media = cbind(m, media[,1]) 
 
 #numero de muestras
 sample_total = nrow(pob_media)
@@ -26,8 +28,8 @@ print(paste0( "prob with replacement rows > 14 " , prob_14))
 
 
 
-
-# Muestreo sin reemplazamiento A   with replacement 
+# ===================================
+# Muestreo sin reemplazamiento 
 
 pob = c(13.9, 11.5, 16.7, 14.4, 14.6, 15.1)
 
@@ -37,7 +39,6 @@ m = matrix(p, nrow = 20, ncol = 3)
 media = (matrix(m[,1]) + matrix(m[,2]) +matrix(m[,3]))/3
 pob_media = cbind(m, media[,1]) 
 
-pob_media
 
 #numero de muestras
 sample_total = nrow(pob_media)
@@ -252,6 +253,20 @@ pob_mean = mean(pob)
 
 # Si la mediana muestral fuera un estimador insesgado de la media se cumpliría que:
 # E(mediana muestral) = media poblacional
+
+# ================== Case D =====================
+# MAS con reemplzamiento 
+pob = c(13.9, 11.5, 16.7, 14.4, 14.6, 15.1)
+pob_size = length(pob)
+
+p = permutations(x=pob, k =3, replace=TRUE)
+
+# 0.018 0.310 0.549
+# 1, 4, 6
+
+
+
+
 
 
 
