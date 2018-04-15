@@ -262,7 +262,16 @@ pob_size = length(pob)
 p = permutations(x=pob, k =3, replace=TRUE)
 
 # 0.018 0.310 0.549
-# 1, 4, 6
+
+m = matrix(pob, nrow = 6, ncol = 1)
+sample_prob = matrix(rep ( 1 / 6, 6 ), nrow = 6 , ncol=1)
+pob_prob = cbind(m, sample_prob) 
+
+facum = cumsum( pob_prob[ ,2])
+
+pob_prob_acum = cbind(pob_prob, facum)
+
+
 
 
 
