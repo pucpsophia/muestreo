@@ -1,260 +1,114 @@
 install.packages("arrangements")
+install.packages("combinat")
+library("combinat")
 require("arrangements")
+options(digits = 5)
 
-
-#======================== A Part =================
+#======================== Parte A  =================
 # Muestreo con reemplazamiento  
 
+pob <- c(13.9, 11.5, 16.7, 14.4, 14.6, 15.1)
+pob_media = mean(pob)
+pob_var_n = sum((pob-mean(pob))^2)/ length(pob) 
+pob_var_n1 = var(pob)
 
-pob = c(13.9, 11.5, 16.7, 14.4, 14.6, 15.1)
-#combinations(x=pob, k =3, replace=TRUE)
+p <- permutations(x=pob, k =3, replace=TRUE)
+m <- as.matrix(p)
+media <- as.matrix(apply(m,1,mean))
+var <- as.matrix(apply(m,1,var))
+prob <- as.matrix(rep ( 1 / nrow(m), nrow(m)))
+espacio <- cbind(m, media[,1], var[,1], prob[, 1]) 
+colnames(espacio) <- c("X1", "X2", "X3", "media", "s2", "prob")
 
-p = permutations(x=pob, k =3, replace=TRUE)
-#permutation with replacement 
+head(espacio)
+media_muestral = c(sum(espacio[,"media"]*espacio[,"prob"]))
+varianza_muestral = c(sum(espacio[,"s2"]*espacio[,"prob"]))
+varianza_media_muestral = sum(((espacio[,"media"] - sum(espacio[,"media"]*espacio[,"prob"]))^2)*espacio[,"prob"])
 
-m = matrix(p, nrow = 216, ncol = 3)
-
-media = (matrix(m[,1]) + matrix(m[,2]) +matrix(m[,3]))/3
-
-pob_media = cbind(m, media[,1]) 
-
-#numero de muestras
-sample_total = nrow(pob_media)
-#muestras con mas de 14
-sample_14 =  length(which(pob_media[,4] > 14))
-#probabilidad de media muestral > 14
+sample_total = nrow(espacio)
+sample_14 =  length(which(espacio[,"media"] > 14))
 prob_14  = sample_14 / sample_total
-print(paste0( "prob with replacement rows > 14 " , prob_14))
+print(paste0( "probabilidad de elementos > 14 " , prob_14))
 
 
 
-# ===================================
+# ====================== Parte A =============
 # Muestreo sin reemplazamiento 
 
-pob = c(13.9, 11.5, 16.7, 14.4, 14.6, 15.1)
+pob <- c(13.9, 11.5, 16.7, 14.4, 14.6, 15.1)
+
+pob_media = mean(pob)
+pob_var_n = sum((pob-mean(pob))^2)/ length(pob) 
+pob_var_n1 = var(pob)
 
 p = combinations(x=pob, k =3, replace=FALSE)
+m <- as.matrix(p)
+media <- as.matrix(apply(m,1,mean))
+var <- as.matrix(apply(m,1,var))
+prob <- as.matrix(rep ( 1 / nrow(m), nrow(m)))
+espacio <- cbind(m, media[,1], var[,1], prob[, 1]) 
+colnames(espacio) <- c("X1", "X2", "X3", "media", "s2", "prob")
 
-m = matrix(p, nrow = 20, ncol = 3)
-media = (matrix(m[,1]) + matrix(m[,2]) +matrix(m[,3]))/3
-pob_media = cbind(m, media[,1]) 
+head(espacio)
+media_muestral = c(sum(espacio[,"media"]*espacio[,"prob"]))
+varianza_muestral = c(sum(espacio[,"s2"]*espacio[,"prob"]))
+varianza_media_muestral = sum(((espacio[,"media"] - sum(espacio[,"media"]*espacio[,"prob"]))^2)*espacio[,"prob"])
 
-
-#numero de muestras
-sample_total = nrow(pob_media)
-print(paste0( "total rows " , sample_total))
-
-#muestras con mas de 14
-sample_14 =  length(which(pob_media[,4] > 14))
-print(paste0( "total rows > 14 " , sample_14))
-#probabilidad de media muestral > 14
+sample_total = nrow(espacio)
+sample_14 =  length(which(espacio[,"media"] > 14))
 prob_14  = sample_14 / sample_total
-print(paste0( "prob with replacement rows > 14 " , prob_14))
+print(paste0( "probabilidad de elementos > 14 " , prob_14))
+v_y = (1 - 3/6) *  (pob_var_n1 /3)
 
 
 #======================== B Part =================
-# b halle la varianza de la media anterior  y compruebe  que se cumple la proposicion 2.2
-#muestreo aleatorio simple con reemplazamiento 
-
-
-pob = c(13.9, 11.5, 16.7, 14.4, 14.6, 15.1)
-#combinations(x=pob, k =3, replace=TRUE)
-
-p = permutations(x=pob, k =3, replace=TRUE)
-
-m = matrix(p, nrow = 216, ncol = 3)
-media = (matrix(m[,1]) + matrix(m[,2]) +matrix(m[,3]))/3
-pob_media = cbind(m, media[,1]) 
-
-sample_prob = matrix(rep ( 1 / nrow(pob_media), nrow(pob_media)),nrow = nrow(pob_media), ncol=1)
-nrow(sample_prob)
-pob_media_prob = cbind(pob_media, sample_prob) 
-
-
-sample_variance = pob_media_prob[,4] ** 2 
-
-pob_media_prob_variance = cbind(pob_media_prob, sample_variance) 
-
-#numero de muestras
-sample_total = nrow(pob_media_prob_variance)
-print(paste0( "total samples " , sample_total  ))
-#muestras con mas de 14
-sample_14 =  length(which(pob_media_prob_variance[,4] > 14))
-print(paste0( "total rows > 14 " , sample_14))
-#probabilidad de media muestral > 14
-prob_14  = sample_14 / sample_total
-print(paste0( "prob with replacement rows > 14 " , prob_14))
-
-head(pob_media_prob_variance)
-
-hope_sample_mean = sum(pob_media_prob_variance[, 4] * pob_media_prob_variance[, 5])
-print(paste0( "hope_sample_mean " , hope_sample_mean))
-
-# varianza de la media muestral 
-
-hope_sample_variance = sum(pob_media_prob_variance[, 5] * pob_media_prob_variance[, 6]) - (hope_sample_mean) ** 2
-print(paste0( "hope_sample_mean " , hope_sample_variance))
-
-
-#cociente varianza poblacional y n 
-pob_mean = mean(pob)
-pob_variance = sum( (pob - pob_mean) ** 2) / length(pob)
-v_y = pob_variance / 3
-print(paste0( "variance_y " , v_y))
-# weird variance_pob = var(pob)
-
-
-#Muestreo Aleatorio Simple Sin Reemplazamiento 
-
-pob = c(13.9, 11.5, 16.7, 14.4, 14.6, 15.1)
-
-p = combinations(x=pob, k =3, replace=FALSE)
-
-m = matrix(p, nrow = 20, ncol = 3)
-media = (matrix(m[,1]) + matrix(m[,2]) +matrix(m[,3]))/3
-pob_media = cbind(m, media[,1]) 
-
-pob_size = nrow(pob_media)
-
-sample_prob = matrix(rep ( 1 / pob_size, pob_size), nrow = pob_size, ncol=1)
-
-pob_media_prob = cbind(pob_media, sample_prob) 
-
-sample_variance = pob_media_prob[,4] ** 2 
-
-pob_media_prob_variance = cbind(pob_media_prob, sample_variance) 
-
-#numero de muestras
-sample_total = nrow(pob_media_prob_variance)
-print(paste0( "total samples " , sample_total  ))
-#muestras con mas de 14
-sample_14 =  length(which(pob_media_prob_variance[,4] > 14))
-print(paste0( "total rows > 14 " , sample_14))
-#probabilidad de media muestral > 14
-prob_14  = sample_14 / sample_total
-print(paste0( "prob with replacement rows > 14 " , prob_14))
-
-
-hope_sample_mean = sum(pob_media_prob_variance[, 4] * pob_media_prob_variance[, 5])
-
-print(paste0( "hope_sample_mean " , hope_sample_mean))
-
-# varianza de la media muestral 
-
-hope_sample_variance = sum(pob_media_prob_variance[, 5] * pob_media_prob_variance[, 6]) - (hope_sample_mean) ** 2
-print(paste0( "hope_sample_mean " , hope_sample_variance))
-
-#media poblacional
-mean(pob)
-
-# varianza poblacion con n -1 
-variance_pob = var (pob)
-v_y = (1 - 3/6) * (variance_pob /3)
-
-
-#======================== C Part =================
-# Suponga que para estimar la media del nivel de hemoglobina en estos 6
-# pacientes se propusiera la mediana de los valores observados en la muestra.
-# ¿Sería un estimador insesgado? ¿Tiene este una menor varianza que la media
-# muestral?
-
-# ============
 # Con reemplazamiento 
 
-pob = c(13.9, 11.5, 16.7, 14.4, 14.6, 15.1)
-pob_size = length(pob)
-
-p = permutations(x=pob, k =3, replace=TRUE)
-m = matrix(p, nrow = 216, ncol = 3)
-sample_prob = matrix(rep ( 1 / 216, 216 ), nrow = 216 , ncol=1)
-pob_prob = cbind(m, sample_prob) 
-
-
-vec_median = vector()
-vec_median_square = vector()
-for (row in 1:nrow(pob_prob)) {
-    vector <- c(pob_prob[row,1:3])
-    vec_median[row] <- median(vector)
-    vec_median_square[row] <- vec_median[row] ** 2
-}
-pob_prob_median = cbind( cbind(pob_prob, matrix(vec_median, nrow = 216 , ncol=1))
-
-pob_prob_median_varianza = cbind(pob_prob_median, matrix(vec_median_square, nrow = 216 , ncol=1))                
-
-
-#numero de muestras
-sample_total = nrow(pob_prob_median_varianza)
-print(paste0( "total samples " , pob_prob_median_varianza  ))
-
-hope_sample_median = sum(pob_prob_median_varianza[, 4] * pob_prob_median_varianza[, 5])
-print(paste0( "hope_sample_median " , hope_sample_median))
-
-# varianza de la mediana muestral 
-
-hope_sample_variance = sum(pob_prob_median_varianza[, 4] * pob_prob_median_varianza[, 6]) - (hope_sample_mean) ** 2
-print(paste0( "hope_sample_median_variance" , hope_sample_variance))
-
-
-#cociente varianza poblacional y n 
-pob_mean = mean(pob)
-
-# Si la mediana muestral fuera un estimador insesgado de la media se cumpliría que:
-# E(mediana muestral) = media poblacional
-
-pob_mean
-hope_sample_median
-
-# Se verifica que ambos valores no son iguales, por lo tanto la mediana muestral no es un
-# estimador insesgado de la media poblacional.
+# Muestreo con reemplazamiento  
+pob <- c(13.9, 11.5, 16.7, 14.4, 14.6, 15.1)
+pob_media = mean(pob)
+pob_mediana = median(pob)
+pob_var_n = sum((pob-mean(pob))^2)/ length(pob) 
+pob_var_n1 = var(pob)
+p <- permutations(x=pob, k =3, replace=TRUE)
+m <- as.matrix(p)
+media <- as.matrix(apply(m,1,mean))
+var <- as.matrix(apply(m,1,var))
+median <- as.matrix(apply(m,1,median))
+prob <- as.matrix(rep ( 1 / nrow(m), nrow(m)))
+espacio <- cbind(m, media[,1], var[,1], median[, 1] , prob[, 1]) 
+colnames(espacio) <- c("X1", "X2", "X3", "media", "s2", "mediana", "prob")
+head(espacio)
+media_muestral = c(sum(espacio[,"media"]*espacio[,"prob"]))
+median_muestral = c(sum(espacio[,"mediana"]*espacio[,"prob"]))
+varianza_muestral = c(sum(espacio[,"s2"]*espacio[,"prob"]))
+varianza_media_muestral = sum(((espacio[,"media"] - sum(espacio[,"media"]*espacio[,"prob"]))^2)*espacio[,"prob"])
+varianza_mediana_muestral = sum(((espacio[,"mediana"] - sum(espacio[,"mediana"]*espacio[,"prob"]))^2)*espacio[,"prob"])
 
 # =========== Muestreo aleatorio simple sin reemplazamiento
 
-pob = c(13.9, 11.5, 16.7, 14.4, 14.6, 15.1)
-pob_size = length(pob)
-
+pob <- c(13.9, 11.5, 16.7, 14.4, 14.6, 15.1)
+pob_media = mean(pob)
+pob_mediana = median(pob)
+pob_var_n = sum((pob-mean(pob))^2)/ length(pob) 
+pob_var_n1 = var(pob)
 p = combinations(x=pob, k =3, replace=FALSE)
-
-m = matrix(p, nrow = 20, ncol = 3)
-sample_prob = matrix(rep ( 1 / 20, 20 ), nrow = 20 , ncol=1)
-pob_prob = cbind(m, sample_prob) 
-
-
-vec_median = vector()
-vec_median_square = vector()
-for (row in 1:nrow(pob_prob)) {
-  vector <- c(pob_prob[row,1:3])
-  vec_median[row] <- median(vector)
-  vec_median_square[row] <- vec_median[row] ** 2
-}
-pob_prob_median = cbind(pob_prob, matrix(vec_median, nrow = 20 , ncol=1))
-                         
-pob_prob_median_varianza = cbind(pob_prob_median, matrix(vec_median_square, nrow = 20 , ncol=1))                
+m <- as.matrix(p)
+media <- as.matrix(apply(m,1,mean))
+var <- as.matrix(apply(m,1,var))
+median <- as.matrix(apply(m,1,median))
+prob <- as.matrix(rep ( 1 / nrow(m), nrow(m)))
+espacio <- cbind(m, media[,1], var[,1], median[, 1] , prob[, 1]) 
+colnames(espacio) <- c("X1", "X2", "X3", "media", "s2", "mediana", "prob")
+head(espacio)
+media_muestral = c(sum(espacio[,"media"]*espacio[,"prob"]))
+median_muestral = c(sum(espacio[,"mediana"]*espacio[,"prob"]))
+varianza_muestral = c(sum(espacio[,"s2"]*espacio[,"prob"]))
+varianza_media_muestral = sum(((espacio[,"media"] - sum(espacio[,"media"]*espacio[,"prob"]))^2)*espacio[,"prob"])
+varianza_mediana_muestral = sum(((espacio[,"mediana"] - sum(espacio[,"mediana"]*espacio[,"prob"]))^2)*espacio[,"prob"])
 
 
-#numero de muestras
-sample_total = nrow(pob_prob_median_varianza)
-print(paste0( "total samples " , sample_total  ))
-
-hope_sample_median = sum(pob_prob_median_varianza[, 4] * pob_prob_median_varianza[, 5])
-print(paste0( "hope_sample_median " , hope_sample_median))
-
-# varianza de la mediana muestral 
-
-hope_sample_variance = sum(pob_prob_median_varianza[, 4] * pob_prob_median_varianza[, 6]) - (hope_sample_median) ** 2
-
-hope_sample_variance = sum( (pob_prob_median_varianza[, 5] -  hope_sample_median) ** 2 ) / nrow(pob_prob_median_varianza)
-
-#1/n sum(X-x)2
-
-print(paste0( "hope_sample_median_variance" , hope_sample_variance))
-
-#cociente varianza poblacional y n 
-pob_mean = mean(pob)
-
-# Si la mediana muestral fuera un estimador insesgado de la media se cumpliría que:
-# E(mediana muestral) = media poblacional
-
-# ================== Case D =====================
+# ================== Parte C =====================
 # MAS con reemplzamiento 
 pob = c(13.9, 11.5, 16.7, 14.4, 14.6, 15.1)
 pob_size = length(pob)
@@ -262,14 +116,52 @@ pob_size = length(pob)
 p = permutations(x=pob, k =3, replace=TRUE)
 
 # 0.018 0.310 0.549
-
 m = matrix(pob, nrow = 6, ncol = 1)
-sample_prob = matrix(rep ( 1 / 6, 6 ), nrow = 6 , ncol=1)
-pob_prob = cbind(m, sample_prob) 
+prob <- as.matrix(rep ( 1 / nrow(m), nrow(m)))
+facum = cumsum( prob[ ,1])
+espacio = cbind(m, prob, facum) 
+colnames(espacio) <- c("X1", "prob", "pacum")
 
-facum = cumsum( pob_prob[ ,2])
+head(espacio)
 
-pob_prob_acum = cbind(pob_prob, facum)
+a <- findInterval(0.018, espacio[,"pacum"]) + 1 
+b <- findInterval(0.310, espacio[,"pacum"]) + 1
+c <- findInterval(0.549, espacio[,"pacum"]) + 1
+
+muestra = c( espacio[a, 1],espacio[b, 1],espacio[c, 1])
+muestra
+mean(muestra)
+
+
+# MAS sin reemplzamiento 
+pob = c(13.9, 11.5, 16.7, 14.4, 14.6, 15.1)
+pob_size = length(pob)
+p = permutations(x=pob, k =3, replace=TRUE)
+# 0.018 0.310 0.549
+m = matrix(pob, nrow = 6, ncol = 1)
+prob <- as.matrix(rep ( 1 / nrow(m), nrow(m)))
+facum = cumsum( prob[ ,1])
+espacio = cbind(m, prob, facum) 
+colnames(espacio) <- c("X1", "prob", "pacum")
+head(espacio)
+a <- findInterval(0.018, espacio[,"pacum"]) + 1
+muestra_a =  espacio[a,1 ]    
+espacio <- espacio[ -c(a),]
+espacio[,"prob"] <- as.matrix(rep ( 1 / nrow(espacio), nrow(espacio)))
+espacio[,"pacum"] <- cumsum(espacio[,"prob"])
+espacio
+b <- findInterval(0.310, espacio[,"pacum"]) + 1
+muestra_b =  espacio[b, 1]    
+espacio <- espacio[ -c(b),]
+espacio[,"prob"] <- as.matrix(rep ( 1 / nrow(espacio), nrow(espacio)))
+espacio[,"pacum"] <- cumsum(espacio[,"prob"])
+espacio
+c <- findInterval(0.549, espacio[,"pacum"]) + 1
+muestra_c =  espacio[c,1]    
+muestra = c(muestra_a, muestra_b, muestra_c)
+muestra
+mean(muestra)
+
 
 
 
