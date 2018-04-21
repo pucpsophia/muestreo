@@ -10,16 +10,13 @@ set.seed(100)
 data(api)
 apipop[1:2, ]
 
-N <- dim(apipop)[1]
+N <- dim(apipop)[1] # 6194
 n <- 500
-
-print(N)
-print(n)
 
 index  <- sample(N, n)
 sample <- apipop[index, ] 
 
-disMASs <- svydesign( id = ~1, fpc=rep(N,n), data = sample)
+disMASs <- svydesign( id = ~1, fpc = rep(N,n), data = sample)
 
 means = svymean(~api00+api99 , disMASs)
 
