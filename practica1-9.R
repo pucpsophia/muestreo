@@ -21,12 +21,20 @@ wald
 
 
 fun_wilson <- function (n) {
-  4 * ( (z ^ 2) * (N - n) / (n * (N -1) ) ) * pbar + ((z ^ 2) * (N - n) / (n * (N -1) )) ^ 2 - 4 * ((z ^ 2) * (N - n) / (n * (N -1) )) * ( pbar ^ 2) - e  
+  (4 * ( (z ^ 2) * (N - n) / (n * (N -1) ) ) * pbar) + (((z ^ 2) * (N - n) / (n * (N -1) )) ^ 2) - ((4 * ((z ^ 2) * (N - n) / (n * (N -1) ))) * ( pbar ^ 2)) - e  
 } 
 
-fun_wilson <- function (n) (((((z ^ 2) * (N - n)) / (n * (N - 1))) ^ (1 / 2)) * ((((z ^ 2) * (N - n)) / (n * (N - 1))) - (4 * (pbar ^ 2)) + (4 * pbar)) ^ (1 / 2)) / (2 * ((((z ^ 2) * (N - n)) / (n * (N - 1))) + 1)) - e
+fun_wilson <- function (n) {
+  (
+    ((((z ^ 2) * (N - n)) / (n * (N - 1))) ^ (1 / 2)) * 
+     ((((z ^ 2) * (N - n)) / (n * (N - 1))) - (4 * (pbar ^ 2)) + (4 * pbar)) ^ (1 / 2)
+  ) / (2 * ((((z ^ 2) * (N - n)) / (n * (N - 1))) + 1)) - e
+}
 
-fun_wald <- function (n) (((((z ^ 2) * (N - n)) / (n * (N - 1))) ^ (1 / 2)) * ( - (4 * (pbar ^ 2)) + (4 * pbar)) ^ (1 / 2)) / 2 - e
+fun_wald <- function (n) 
+  (
+    ((((z ^ 2) * (N - n)) / (n * (N - 1))) ^ (1 / 2)) * ( - (4 * (pbar ^ 2)) + (4 * pbar)) ^ (1 / 2)
+  ) / 2 - e
 
                                                                                                           
 uniroot.all(fun_wilson, c(0, 500))
