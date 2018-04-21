@@ -70,6 +70,7 @@ print(paste0( "lim sup ", lim_sup))
 # ================= Part C ===============================
 
 whiplash<-rep(c(1:10), as.numeric(movies[movies$name == 'Whiplash', 3:12]))
+
 #  2989 1410 2029 3244 6710 18499 63151 148482 177511 120836
 
 e_mean = mean(whiplash)
