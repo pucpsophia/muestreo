@@ -55,8 +55,8 @@ espacio <- cbind(m, media[,1], var[,1], prob[, 1])
 colnames(espacio) <- c("X1", "X2", "X3", "media", "s2", "prob")
 
 head(espacio)
-media_muestral = c(sum(espacio[,"media"]*espacio[,"prob"]))
-varianza_muestral = c(sum(espacio[,"s2"]*espacio[,"prob"]))
+media_muestral = c(sum(espacio[,"media"] * espacio[,"prob"]))
+varianza_muestral = c(sum(espacio[,"s2"]  * espacio[,"prob"]))
 varianza_media_muestral = sum(((espacio[,"media"] - sum(espacio[,"media"]*espacio[,"prob"]))^2)*espacio[,"prob"])
 
 sample_total = nrow(espacio)
@@ -77,6 +77,7 @@ var_mediana_fun <- function(vec){
 var_mediana_n1_fun <- function(vec){
   return( sum( ( vec - median(vec) ) ^ 2 ) / (length(vec) - 1) )
 }
+
 pob <- c(13.9, 11.5, 16.7, 14.4, 14.6, 15.1)
 pob_media = mean(pob)
 pob_mediana = median(pob)
@@ -97,7 +98,7 @@ colnames(espacio) <- c("X1", "X2", "X3", "media", "s2", "mediana", "var_median",
 head(espacio)
 
 media_muestral = c(sum(espacio[,"media"]*espacio[,"prob"]))
-median_muestral = c(sum(espacio[,"mediana"]*espacio[,"prob"]))
+median_muestral = c(sum(espacio[,"mediana"]*espacio[,"prob"])) # esperanza E(Mediana) = mean ( espacio [, "mediana"] )
 varianza_muestral = c(sum(espacio[,"s2"]*espacio[,"prob"]))
 varianza_median = c(sum(espacio[,"var_median"]*espacio[,"prob"]))
 varianza_media_muestral = sum(((espacio[,"media"] - sum(espacio[,"media"]*espacio[,"prob"]))^2)*espacio[,"prob"])
@@ -143,7 +144,6 @@ varianza_mediana_muestral = sum(((espacio[,"mediana"] - sum(espacio[,"mediana"]*
 
 sprintf(" insesgado mediana poblacional %s , mediana muestral %s", pob_mediana, median_muestral )
 sprintf(" insesgado varianza mediana poblacional %s , varianza mediana %s", pob_var_mediana_n1 , varianza_median)
-
 
 # ================== Parte C =====================
 # MAS con reemplzamiento 

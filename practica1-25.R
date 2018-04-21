@@ -10,11 +10,11 @@ movie_path <- file.path(getwd(), "Documents", "pucp" , "muestreo", "movies.csv")
 movies <- read.csv(file=movie_path, header=TRUE, sep=",")
 head(movies)
 
-indexes <-sample(x=nrow(movies),size=12,replace=FALSE)
+indexes_test <-sample(x=nrow(movies),size=12,replace=FALSE)
 
-sample_movie =  movies[indexes, ]
+sample_movie_test =  movies[indexes_test, ]
 
-sample_movie
+head(sample_movie_test)
 
 sample_function <- function(vec){
     d <- rep(c(1:10), vec)
@@ -24,11 +24,9 @@ sample_function <- function(vec){
     return ( res )
 }
 
-sample_sd_vec <- apply(sample_movie[, 3:12],1, sample_function)
-
-sample_mean <- mean(sample_sd_vec)
-sample_var <-  (1/length(sample_sd_vec)) * sum ( (sample_sd_vec - sample_mean) **2)
-sample_sd <- sqrt(sample_var)
+sample_test_sd_vec <- apply(sample_movie_test[, 3:12],1, sample_function)
+sample_test_mean <- mean(sample_test_sd_vec)
+sample_test_var <-  (1/length(sample_test_sd_vec)) * sum ( (sample_test_sd_vec - sample_test_mean) **2)
 
 N <- 250
 e <- 0.1
@@ -36,18 +34,28 @@ alpha = 0.05
 z= qnorm(1-alpha/2)
 
 # duda cual es esta formula 
-n <- ( z ^ 2 * ( sample_var ) * N)/( z ^ 2 * ( sample_var ) + ( e ^ 2 ) * N )
+n_muestra <- ( z ^ 2 * ( sample_test_var ) * N)/( z ^ 2 * ( sample_test_var ) + ( e ^ 2 ) * N )
 
-print(n)
+print(n_muestra)
 
 
 # ================= Part B ===============================
 
 N <- 250
-n <- 14
+n <- n_muestra
 alpha = 0.05
 z= qnorm(1-alpha/2)
 e = 0.1
+
+
+indexes <-sample(x=nrow(movies),size=n,replace=FALSE)
+
+sample_movie =  movies[indexes, ]
+head(sample_movie)
+
+sample_sd_vec <- apply(sample_movie_test[, 3:12],1, sample_function)
+sample_mean <- mean(sample_test_sd_vec)
+sample_var <-  (1/length(sample_test_sd_vec)) * sum ( (sample_test_sd_vec - sample_test_mean) **2)
 
 error  <- ( z * sqrt(sample_var)/ sqrt(n) ) * sqrt( 1 - n/N )
 
@@ -74,15 +82,4 @@ print(e_sd)
 
 
 
-# sample_var = ((length(sample_vars)-1)/length(sample_vars))*var(sample_vars)
-
-
-# n-1/n S2
-
-mean_sample_function2 <- function(vec){
-  d <- rep(c(1:10), vec)
-  s2 = ((length(d)-1)/length(d))*var(d)
-  res <- sqrt(s2)
-  return ( res )
-}
 

@@ -12,11 +12,11 @@ N = 500
 n = 30
 x = 2
 alpha = 0.05
-pbar = x/n
+pbar = x/nß
 z = qnorm(1-alpha/2)
 e = 0.03
 
-wald = ( ( z ^ 2 * pbar * ( 1 - pbar ) ) * N )/( ( z * pbar * ( 1 - pbar ) ) + ( e ^ 2 * ( N - 1 )))
+wald = ( ( z ^ 2 * pbar * ( 1 - pbar ) ) * N )/( ( z ^ 2 * pbar * ( 1 - pbar ) ) + ( e ^ 2 * ( N - 1 )))
 wald
 
 
