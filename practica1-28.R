@@ -1,50 +1,57 @@
-install.packages("arrangements")
-install.packages("combinat")
-install.packages("survey")
-library("combinat")
-require("arrangements")
-library(survey)
-options(digits = 20)
 
-# pregunta 26
+# Población
 
 
+# Población
+N= 3000
 
-tallas <- read.csv(file="tallas.csv", header=TRUE, sep=",")
-head(tallas)
-disTS = svydesign(id=~1, fpc=rep(700,35) , data = tallas)
-tallas_var = svyvar (~estatura, disTS)
-tallas_ds = sqrt(tallas_var)
+z = 1.96
 
-N = 700
-alpha = 0.05
-n = 35
-z = qnorm(1-alpha/2)
+#Error
+#e = 10^6
+e=950000
+#Confianza
+c = 0.95
+#Personas que tienen servicio de agua
+#N_d= 2100
+N_d=1950
 
-e <- z * (tallas_ds / sqrt(35)) * sqrt(1 - 35 / 700)
+#Promedio del consumo de agua de las 2100 personas
+#u = 51*10^2
+u = 12000
+
+#Desviación estandar del consumo de agua de las 2100 personas
+
+#ds = 380
+ds = 1540
+# Proción de N_d con respecto a la población
+p = N_d/3000
 
 
-# 1600 urnas seleccionadas de una gran poblacion 
-# 812 votaron por el candidato opositor 
-# 480 votaron por el candidato estatal 
-# 50 votaron en blanco
-# 258 votaron invalido
 
-# nuestra muestra es de 1600 de una muestra mayor que consideraremos infinita 
-# definimos nuestra muestra 
-# 1 votaron candidato opositor
-# 2 votaron candidato estatal
-# 3 votaron en blanco
-# 4 votaron invalido 
+# Tamaño de la muestra
 
-n <- 1600
-sample =  rep(c("a", "b", "c", "d"), c(812, 480, 50, 258) )
-m = matrix(data = sample, nrow = 1600, ncol = 1)
-d = as.data.frame(m)
-dis = svydesign(id=~1,  data = d)
-v_var = svyvar(~V1, dis)
-v_sd = sqrt(v_var)
-e = z * (v_sd / sqrt(n)) 
+n = (((N_d-1)*(ds^2)+(1-p)*(N_d)*u^2)*(z)^2*(N)^2)/(((N_d-1)*ds^2+(1-p)*N_d*u^2)*(z^2)*N+e^2*(N-1))
+n
 
-confint(v_mean)
-print(e)
+# Estimación del consumo total del agua en la zona será
+Est = N*u
+Est
+
+# varianza
+
+#var = (1/(N-1))*((N_d)*(ds^2)+(1-p)*N_d*u^2)
+#var
+
+# varainza del estimador
+
+#var_est = (N^2)*(1-n/N)*(var/n)
+#sqrt(var_est)
+
+#N*u
+
+
+
+
+
+
