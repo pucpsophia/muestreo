@@ -3,11 +3,11 @@ install.packages("combinat")
 library("combinat")
 require("arrangements")
 options(digits = 5)
-getwd()
 
-movie_path <- file.path(getwd(), "Documents", "pucp" , "muestreo", "movies.csv")
+setwd("f:/muestreo")
 
-movies <- read.csv(file=movie_path, header=TRUE, sep=",")
+movies <- read.csv(file= "movies.csv", header=TRUE, sep=",")
+
 head(movies)
 
 indexes_test <-sample(x=nrow(movies),size=12,replace=FALSE)
@@ -17,11 +17,11 @@ sample_movie_test =  movies[indexes_test, ]
 head(sample_movie_test)
 
 sample_function <- function(vec){
-    d <- rep(c(1:10), vec)
-    m <- mean(d)
-    s2 <- (1/ (length(d) -1) ) * sum ( (d - m) **2)
-    res <- sqrt(s2)
-    return ( res )
+  d <- rep(c(1:10), vec)
+  m <- mean(d)
+  s2 <- (1/ (length(d) -1) ) * sum ( (d - m) **2)
+  res <- sqrt(s2)
+  return ( res )
 }
 
 sample_test_sd_vec <- apply(sample_movie_test[, 3:12],1, sample_function)
@@ -33,16 +33,14 @@ e <- 0.1
 alpha = 0.05
 z= qnorm(1-alpha/2)
 
-# duda cual es esta formula 
 n_muestra <- ( z ^ 2 * ( sample_test_var ) * N)/( z ^ 2 * ( sample_test_var ) + ( e ^ 2 ) * N )
 
 print(n_muestra)
 
-
 # ================= Part B ===============================
 
 N <- 250
-n <- n_muestra
+n <- 15 # n de parte a
 alpha = 0.05
 z= qnorm(1-alpha/2)
 e = 0.1
@@ -51,11 +49,13 @@ e = 0.1
 indexes <-sample(x=nrow(movies),size=n,replace=FALSE)
 
 sample_movie =  movies[indexes, ]
-head(sample_movie)
+sample_movie
 
-sample_sd_vec <- apply(sample_movie_test[, 3:12],1, sample_function)
-sample_mean <- mean(sample_test_sd_vec)
-sample_var <-  (1/length(sample_test_sd_vec)) * sum ( (sample_test_sd_vec - sample_test_mean) **2)
+sample_sd_vec <- apply(sample_movie[, 3:12],1, sample_function)
+sample_mean <- mean(sample_sd_vec)
+sample_var <-  (1/length(sample_sd_vec)) * sum ( (sample_sd_vec - sample_mean) **2)
+
+
 
 error  <- ( z * sqrt(sample_var)/ sqrt(n) ) * sqrt( 1 - n/N )
 
@@ -80,7 +80,6 @@ e_var = (1/length(whiplash)) * sum ( (whiplash - e_mean) **2)
 e_sd = sqrt(e_var)
 
 print(e_sd)
-
 
 
 
