@@ -9,7 +9,7 @@ ia = IMDb()
 top250 = ia.get_top250_movies()
 
 with open('movies.csv', 'w') as csvfile:
-    fieldnames = ['id', 'name', 'v1', 'v2', 'v3', 'v4', 'v5', 'v6', 'v7', 'v8', 'v9', 'v10']
+    fieldnames = ['id', 'name', 'v1', 'v2', 'v3', 'v4', 'v5', 'v6', 'v7', 'v8', 'v9', 'v10', "year", "rating"]
     writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
     writer.writeheader()
     for m in top250:
@@ -28,7 +28,9 @@ with open('movies.csv', 'w') as csvfile:
                          'v7': votes[7],
                          'v8': votes[8],
                          'v9': votes[9],
-                         'v10': votes[10]
+                         'v10': votes[10],
+                         'year': movie.data["year"],
+                         'rating': movie.data["rating"]
                          })
 
 
