@@ -1,6 +1,11 @@
 install.packages("arrangements")
 install.packages("combinat")
 install.packages("survey")
+install.packages("sampling")
+install.packages("survey")
+
+library(survey)
+library(sampling)
 library("combinat")
 require("arrangements")
 options(digits = 5)
@@ -13,7 +18,6 @@ str(movies)
 nrow(movies)
 
 str(d)
-
 
 
 # pregunta 25 anterior 
@@ -69,6 +73,9 @@ piloto_estrato_3 <- movies_d[sample(which(movies_d$estrato == 3), 10), ]
 piloto_estrato_4 <- movies_d[sample(which(movies_d$estrato == 4), 10), ]
 
 
+
+
+
 Nh_estrato_1  = nrow(movies_d[which(movies_d$estrato == 1),])
 Nh_estrato_2  = nrow(movies_d[which(movies_d$estrato == 2),])
 Nh_estrato_3  = nrow(movies_d[which(movies_d$estrato == 3),])
@@ -109,21 +116,19 @@ nh_4 = ceiling(ah_4 * n)
 # check if the value is 1 
 # nh_2 = 2
 
-install.packages("sampling")
-library(sampling)
-m=strata(movies_d, c("estrato"), size= c(nh_1, nh_2, nh_3, nh_4), method="srswor")
+# http://r-survey.r-forge.r-project.org/survey/exmample-lonely.html
+options(survey.lonely.psu="adjust")
+
+m <- sampling::strata(movies_d, c("estrato"), size= c(nh_1, nh_2, nh_3, nh_4), method="srswor")
 me16Am = getdata(movies_d,m)
 
 table(is.na(me16Am$sd))
 
-install.packages("survey")
-library(survey)
-
 aux = data.frame(fpc = c(rep(Nh_estrato_1,nh_1),rep(Nh_estrato_2,nh_2), rep(Nh_estrato_3,nh_3), rep(Nh_estrato_4,nh_4)))
 sampleMAE = cbind(num = 1:( nh_1+ nh_2 + nh_3 + nh_4  ),me16Am,aux)
 
-
 dis16MAE = svydesign(id=~1,strata=~estrato,fpc=~fpc,data=sampleMAE)
+
 
 
 means1 = svymean(~sd,dis16MAE, deff=T)
@@ -131,12 +136,3 @@ means1 = svymean(~sd,dis16MAE, deff=T)
 means1
 
 
-
-
-
-
-
-
-
-
-ah = Nh*sigmah/sum(Nh*sigmah)
