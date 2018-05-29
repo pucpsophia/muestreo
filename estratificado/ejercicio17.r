@@ -106,8 +106,8 @@ nh_2 = ceiling(ah_2 * n)
 nh_3 = ceiling(ah_3 * n)
 nh_4 = ceiling(ah_4 * n)
 
-
-nh_2 = 2
+# check if the value is 1 
+# nh_2 = 2
 
 install.packages("sampling")
 library(sampling)
