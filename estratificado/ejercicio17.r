@@ -38,10 +38,12 @@ str(d)
 # estrato con pelculas de entre los 80 y anteriores a los 90 y un estrato nal con pelculas de
 # los 90 hasta la actualidad.
 
-
-mean_function <- function(vec){
+s_function <- function(vec){
   d <- rep(c(1:10), vec)
-  return( mean(d))
+  m <- mean(d)
+  s2 <- (1/ (length(d) -1) ) * sum ( (d - m) **2)
+  res <- sqrt(s2)
+  return ( res )
 }
 
 
@@ -51,24 +53,11 @@ movies[c(which(movies$year  >= 1980  & movies$year < 1990)), 'estrato'] <- 3
 movies[c(which(movies$year  >= 1990)), 'estrato'] <- 4
 
 
-movies_d <- cbind(movies, mean = c(apply(movies[,3:12] , 1, mean_function)))
+movies_d <- cbind(movies, sd = c(apply(movies[,3:12] , 1, s_function)))
 
 str(movies_d)
 
-unique(movies$estrato)
-
-
-movies[which(movies_d$estrato == 1), c(1,2,14)]
-
-unique(movies[which(movies_d$estrato == 1), "rating" ])
-unique(movies[which(movies_d$estrato == 2), "rating" ])
-unique(movies[which(movies_d$estrato == 3), "rating" ])
-unique(movies[which(movies_d$estrato == 4), "rating" ])
-
 # muestra piloto 
-
-
-
 
 piloto_estrato_1 <- movies_d[sample(which(movies_d$estrato == 1), 10), ]
 piloto_estrato_2 <- movies_d[sample(which(movies_d$estrato == 2), 10), ]
@@ -76,19 +65,17 @@ piloto_estrato_3 <- movies_d[sample(which(movies_d$estrato == 3), 10), ]
 piloto_estrato_4 <- movies_d[sample(which(movies_d$estrato == 4), 10), ]
 
 
-Nh_estrato_1  = nrow( movies_d[which(movies_d$estrato == 1), ])
-Nh_estrato_2  = nrow( movies_d[which(movies_d$estrato == 2), ])
-Nh_estrato_3  = nrow( movies_d[which(movies_d$estrato == 3), ])
-Nh_estrato_4  = nrow( movies_d[which(movies_d$estrato == 4), ])
-
+Nh_estrato_1  = nrow(movies_d[which(movies_d$estrato == 1),])
+Nh_estrato_2  = nrow(movies_d[which(movies_d$estrato == 2),])
+Nh_estrato_3  = nrow(movies_d[which(movies_d$estrato == 3),])
+Nh_estrato_4  = nrow(movies_d[which(movies_d$estrato == 4),])
 
 stopifnot( sum(Nh_estrato_1,  Nh_estrato_2, Nh_estrato_3, Nh_estrato_4) == 250)
 
-
-sigma_h_estrato_1 = sd(piloto_estrato_1$mean)
-sigma_h_estrato_2 = sd(piloto_estrato_2$mean)
-sigma_h_estrato_3 = sd(piloto_estrato_3$mean)
-sigma_h_estrato_4 = sd(piloto_estrato_4$mean)
+sigma_h_estrato_1 = sd(piloto_estrato_1$sd)
+sigma_h_estrato_2 = sd(piloto_estrato_2$sd)
+sigma_h_estrato_3 = sd(piloto_estrato_3$sd)
+sigma_h_estrato_4 = sd(piloto_estrato_4$sd)
 
 
 sum_Nh = (Nh_estrato_1 * sigma_h_estrato_1) +  (Nh_estrato_2 * sigma_h_estrato_2) + (Nh_estrato_3 * sigma_h_estrato_3) + (Nh_estrato_4 * sigma_h_estrato_4)
@@ -107,9 +94,14 @@ z= qnorm(1-alpha/2)
 d = N*e/z
 
 sum_n_a =  ( Nh_estrato_1 * sigma_h_estrato_1 ) ^ 2 / ah_1 + ( Nh_estrato_2 * sigma_h_estrato_2 ) ^ 2 / ah_2 + ( Nh_estrato_3 * sigma_h_estrato_3 ) ^ 2 / ah_3 + ( Nh_estrato_4 * sigma_h_estrato_4 ) ^ 2 / ah_4
-sum_n =   ( Nh_estrato_1 * sigma_h_estrato_1 ) ^ 2  + ( Nh_estrato_2 * sigma_h_estrato_2 ) ^ 2  + ( Nh_estrato_3 * sigma_h_estrato_3 ) ^ 2 + ( Nh_estrato_4 * sigma_h_estrato_4 ) ^ 2 
+sum_n =   ( Nh_estrato_1 * sigma_h_estrato_1 ^ 2) + ( Nh_estrato_2 * sigma_h_estrato_2 ^ 2)  + ( Nh_estrato_3 * sigma_h_estrato_3 ^ 2)  + ( Nh_estrato_4 * sigma_h_estrato_4 ^ 2)  
 n = sum_n_a/(d ^ 2 + sum_n)
-nh = round(ah*n)
+
+nh_1 = ceiling(ah_1 * n)
+nh_2 = ceiling(ah_2 * n)
+nh_3 = ceiling(ah_3 * n)
+nh_4 = ceiling(ah_4 * n)
+
 
 
 
