@@ -14,8 +14,8 @@ library(sampling)
 library(survey)
 library(foreign)
 
-setwd("/Users/gvalderrama/Documents/muestreo")
-#setwd("/Users/gregory/Documents/pucp/muestreo")
+# setwd("/Users/gvalderrama/Documents/muestreo")
+setwd("/Users/gregory/Documents/pucp/muestreo")
 dataset = read.spss("ce2s16Am.sav", to.data.frame=TRUE)
 
 str(dataset)
@@ -116,6 +116,7 @@ samp <- getdata( ce2s16Cz , m)
 disMAE = svydesign( id = ~1, strata = ~Estrato, fpc = ~fpc, data=samp)
 
 # svy package
+
 svyby(formula = ~M500_M,by = ~Sexo, design = disMAE, FUN = svymean)
 
 # variables de dominio Sexo 
@@ -135,22 +136,31 @@ var_dh = ce2s16Cz [ , var(M500_M) , by = c("Sexo", "Estrato") ]
 mu_d = ce2s16Cz[ , mean(M500_M), by = c("Sexo") ]
 
 #Varianza para los dominios (Sexo)----
+
 var_dom = vector( length = 2)
 
-names(var_dom)=c('Hombre','Mujer')
+names(var_dom) = c ( 'Hombre' , 'Mujer' )
 
 dom = 'Hombre'
 
-var_dom[dom] = ( 1 / N_d [ dom ] ^ 2 ) * sum ( ( N_h ^ 2 / n_h ) * ( 1 - n_h / N_h ) * (((N_dh[dom,]-1)/(N_h-1))*var_dh[Sexo==dom,V1]+(N_dh[dom,]/(N_h-1))*(1-N_dh[dom,]/N_h)*(mu_dh[Sexo==dom,V1]-mu_d[Sexo==dom,V1])^2))
+var_dom[dom] = ( 1 / N_d [ dom ] ^ 2 ) * sum ( ( N_h ^ 2 / n_h ) * ( 1 - n_h / N_h ) * ( ( ( N_dh[dom,]-1)/(N_h-1))*var_dh[Sexo==dom,V1]+(N_dh[dom,]/(N_h-1))*(1-N_dh[dom,]/N_h)*(mu_dh[Sexo==dom,V1]-mu_d[Sexo==dom,V1])^2))
 
-dom='Mujer'
+dom = 'Mujer'
 
-var_dom[dom]=(1/N_d[dom]^2)*sum((N_h^2/n_h)*(1-n_h/N_h)*(((N_dh[dom,]-1)/(N_h-1))*var_dh[Sexo==dom,V1]+(N_dh[dom,]/(N_h-1))*(1-N_dh[dom,]/N_h)*(mu_dh[Sexo==dom,V1]-mu_d[Sexo==dom,V1])^2))
+var_dom[dom] = ( 1 / N_d [ dom ] ^ 2 ) * sum ( ( N_h ^ 2 / n_h ) * ( 1 - n_h / N_h ) * ( ( ( N_dh[dom,]-1)/(N_h-1))*var_dh[Sexo==dom,V1]+(N_dh[dom,]/(N_h-1))*(1-N_dh[dom,]/N_h)*(mu_dh[Sexo==dom,V1]-mu_d[Sexo==dom,V1])^2))
 
 sqrt(var_dom) # Para compararlo con el que hallamos por la f?rmula de dominios
 
 
-#Lo que creo que el profesor hizo en el solpar... Creo que est? super mal----
-# aggregate(samp$M500_M,by=list(samp$Sexo),FUN=sd)
+mu_d = vector( length = 2)
+ 
+names(mu_d) = c('Hombre','Mujer')
 
+dom='Hombre'
+
+mu_d[dom] <- sum( ( N_h/ n_h ) * samp[ Sexo==dom, sum(M500_M), by=Estrato ]$V1) / sum( ( N_h / n_h) * samp[Sexo==dom,length(M500_M),by=Estrato]$V1)
+
+dom='Mujer'
+
+mu_d[dom] <- sum( ( N_h / n_h ) * samp[ Sexo==dom, sum(M500_M), by=Estrato ]$V1) / sum(( N_h / n_h ) * samp[Sexo==dom,length(M500_M),by=Estrato]$V1)
 
