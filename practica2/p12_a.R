@@ -105,9 +105,24 @@ dom='Mujer'
 var_dom[dom]=(1/N_d[dom]^2)*sum((N_h^2/n_h)*(1-n_h/N_h)*(((N_dh[dom,]-1)/(N_h-1))*var_dh[Sexo==dom,V1]+(N_dh[dom,]/(N_h-1))*(1-N_dh[dom,]/N_h)*(mu_dh[Sexo==dom,V1]-mu_d[dom])^2))
 #sd por svyby----
 svyby(formula = ~M500_M,by = ~Sexo,design = disMAE2,FUN = svymean)
+svyby(formula = ~M500_M,by = ~Sexo+Estrato2,design = disMAE2,FUN = svymean)
+
 data.frame(Sexo=c('Hombre','Mujer'),M500_M=mu_d,se=sqrt(var_dom))
 #Resta de medias----
-mu_dh
-var_dh
+Y_hat=mu_dh[Sexo=='Mujer',V1]
+Y_hat[1]-Y_hat[2]
+n_dh=table(samp$Sexo,samp$Estrato2)
+var_Y_hat=(1-n_dh[2,]/N_dh[2,])*var_dh[Sexo=='Mujer',V1]/n_dh[2,]
+Y_hat[1]-Y_hat[2]+qnorm(0.975)*sqrt(sum(var_Y_hat))*c(-1,1)
+
+Y_hat=mu_dh[Sexo=='Hombre',V1]
+Y_hat[1]-Y_hat[2]
+n_dh=table(samp$Sexo,samp$Estrato2)
+var_Y_hat=(1-n_dh[2,]/N_dh[2,])*var_dh[Sexo=='Hombre',V1]/n_dh[2,]
+Y_hat[1]-Y_hat[2]+qnorm(0.975)*sqrt(sum(var_Y_hat))*c(-1,1)
+
+
+Y_hat[1]-Y_hat[2]+qnorm(0.975)*sqrt(4.358851^2+9.211507^2)*c(-1,1)
+545.2726-567.8824
 
 
