@@ -11,6 +11,8 @@ library("arrangements")
 
 
 
+set.seed(12345)
+
 options(digits = 5)
 setwd("f:/muestreo")
 movies <- read.csv(file= "movies.csv", header=TRUE, sep=",")
@@ -18,7 +20,6 @@ head(movies)
 str(movies)
 nrow(movies)
 str(d)
-
 
 movies[c(which(movies$year  < 1970)), 'estrato'] <- 1
 movies[c(which(movies$year  >= 1970  & movies$year < 1980)), 'estrato'] <- 2
@@ -42,8 +43,6 @@ table(movies_d$estrato)
 # 68  20  30 132 
 
 # muestra piloto
-
-
 
 # piloto_estrato_1 <- movies_d[sample(which(movies_d$estrato == 1), 12), ]
 # selected values by movie Id
@@ -102,12 +101,11 @@ design_mae = svydesign(id=~1,strata=~estrato,fpc=~fpc,data=sample_mae_fpc)
 means1 = svymean(~sd,design_mae, deff=T)
 
 means1
-# mean     SE DEff
-# sd 1.5976 0.0353 0.56
+# mean    SE DEff
+# sd 1.731 0.052 1.18
 confint(means1)
 # 2.5 % 97.5 %
-# sd 1.5284 1.6667
-
+# sd 1.6294 1.8334
 
 
 # ================= Part C ===============================
