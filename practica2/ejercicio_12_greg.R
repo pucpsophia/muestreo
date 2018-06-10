@@ -16,106 +16,64 @@ library(foreign)
 
 # setwd("/Users/gvalderrama/Documents/muestreo")
 # setwd("/Users/gregory/Documents/pucp/muestreo")
-
 setwd("F:/muestreo")
-
-# case cuzco
-
 load("ce2s16Cz.rdata")
-
 ce2s16Cz=as.data.table(ce2s16Cz)
-
-# clean data
-
 ce2s16Cz = ce2s16Cz[!is.na(ce2s16Cz$M500_M),]
-
 ce2s16Cz = ce2s16Cz[!is.na(ce2s16Cz$Sexo),]
-
 ce2s16Cz = ce2s16Cz[!is.na(ce2s16Cz$Area),]
-
 ce2s16Cz = ce2s16Cz[!is.na(ce2s16Cz$Gestion),]
-
 ce2s16Cz[, Sexo:= droplevels ( Sexo ) ]
-
-str(ce2s16Cz$M500_M)
-
-levels(ce2s16Cz$Area)
-levels(ce2s16Cz$Gestion)
-levels(ce2s16Cz$Sexo)
-
+levels(ce2s16Cz$Area) # "Urbana" "Rural" 
+levels(ce2s16Cz$Gestion) # "Estatal"    "No estatal"
+levels(ce2s16Cz$Sexo) # "Hombre" "Mujer" 
 # Estratos
-
 ce2s16Cz[, Estrato:=interaction(Area,Gestion)]
-
-levels(ce2s16Cz$Estrato)
+levels(ce2s16Cz$Estrato) # "Urbana.Estatal"    "Rural.Estatal"     "Urbana.No estatal" "Rural.No estatal" 
 
 # Crear fpc
-
 ce2s16Cz = ce2s16Cz[ order ( ce2s16Cz$Estrato ) , ]
-
 ce2s16Cz [ , fpc := .N , by = Estrato]
-
 # Longitud de los estratos 
-
 Nh = as.numeric ( table ( ce2s16Cz$Estrato ) )
-
-stopifnot( sum( Nh ) == nrow(ce2s16Cz) ) # validar estratos tienen la toda la poblacion
-
 # Obtener Muestra Piloto
-
 set.seed(12345)
-
 sigma_h = vector(length = 4)
-
 estratos = levels(ce2s16Cz$Estrato)
-
 sigma_h[1] = sd ( ce2s16Cz$M500_M [ ce2s16Cz$Estrato == estratos[1] ] [sample(Nh[1],10)] )
 sigma_h[2] = sd ( ce2s16Cz$M500_M [ ce2s16Cz$Estrato == estratos[2] ] [sample(Nh[2],10)] )
 sigma_h[3] = sd ( ce2s16Cz$M500_M [ ce2s16Cz$Estrato == estratos[3] ] [sample(Nh[3],10)] )
 sigma_h[4] = sd ( ce2s16Cz$M500_M [ ce2s16Cz$Estrato == estratos[4] ] [sample(Nh[4],10)] )
-
 # Hallar Ah neyman
 ah = Nh * sigma_h / sum ( Nh * sigma_h )
-
 # Hallar longitud de los estratos
 N <- nrow(ce2s16Cz)
-
 e <- 5
-
 alpha = 0.05
-
 z <- qnorm ( 1 - alpha / 2 )
-
 d = N * e / z
-
 n = sum( ( ( Nh * sigma_h ) ^ 2 ) / ah ) / ( d ^ 2 + sum( Nh * sigma_h ^ 2 ) )
-
-nh = ceiling(ah * n)
+nh = ceiling(ah * n) # 917 324 195   3
 
 # Ordenar segun estratos
-
 ce2s16Cz = ce2s16Cz[ order ( ce2s16Cz$Estrato ) , ]
-
 #muestreo
-
-set.seed(12345)
-
 m <- sampling::strata(ce2s16Cz, c("Estrato"), size= nh, method="srswor")
-
 muestra <- getdata( ce2s16Cz , m)
-
 disMAE = svydesign( id = ~1, strata = ~Estrato, fpc = ~fpc, data = muestra)
-
 # svy para dominios 
-
 svyby(formula = ~M500_M,by = ~Sexo, design = disMAE, FUN = svymean)
+# Sexo   M500_M       se
+# Hombre Hombre 550.1259 2.859766
+# Mujer   Mujer 539.5873 2.830011
 
 
 # Parte B
 
 # Colapsar Estratos
-
-ce2s16Cz [ , Estrato2:= as.factor( c('Estatal', 'Estatal', 'No estatal', 'No estatal') [ match(Estrato,c('Urbana.Estatal','Rural.Estatal','Urbana.No estatal','Rural.No estatal'))])]
+ce2s16Cz [ , Estrato2:= as.factor( 
+    c('Estatal', 'Estatal', 'No estatal', 'No estatal')
+      [ match(Estrato,c('Urbana.Estatal','Rural.Estatal','Urbana.No estatal','Rural.No estatal'))])]
 
 ce2s16Cz [ , fpc2 := .N, by=Estrato2]
 
@@ -123,69 +81,33 @@ muestra[ , Estrato2:= ce2s16Cz$Estrato2[ ID_unit ] ]
 
 muestra[ , fpc2:= ce2s16Cz$fpc2[ ID_unit ] ]
 
-disMAE2 = svydesign(id=~1, strata=~Estrato2, fpc=~fpc2, data=muestra)
 
-n_h <- table(muestra$Estrato2)
+disMAE_Sexo = svydesign( id = ~1, strata = ~Estrato, fpc = ~fpc, data = muestra)
 
-N_h <- table(ce2s16Cz$Estrato2)
+estimacion <- svyby(formula = ~M500_M, by = ~Sexo + Estrato2, design = disMAE_Sexo , FUN = svymean)
 
-N_dh <- table( muestra$Sexo, muestra$Estrato2) * matrix( c( N_h , N_h ), nrow = 2, byrow = T) / matrix( c( n_h, n_h), nrow = 2, byrow = T)
+#  Sexo   Estrato2   M500_M       se
+# Hombre.Estatal    Hombre    Estatal 545.0589 3.080072
+# Mujer.Estatal      Mujer    Estatal 534.8360 2.945809
+# Hombre.No estatal Hombre No estatal 580.7998 7.712171
+# Mujer.No estatal   Mujer No estatal 569.8986 9.380232
 
-N_d <- rowSums(N_dh)
+mujer_no_estatal = estimacion$M500_M[estimacion$Estrato2 == 'No estatal' & estimacion$Sexo=='Mujer']
 
-mu_dh <- muestra[ , mean(M500_M) , by=.(Sexo,Estrato2) ]
+mujer_estatal =  estimacion$M500_M[estimacion$Estrato2=='Estatal' & estimacion$Sexo=='Mujer']
 
-var_dh <- muestra[ , var(M500_M) , by=.(Sexo,Estrato2)]
+(mujer_no_estatal - mujer_estatal) + z * sqrt(
+                estimacion$se[estimacion$Estrato2=='No estatal' & estimacion$Sexo=='Mujer'] ^ 2 +
+                estimacion$se[estimacion$Estrato2=='Estatal' & estimacion$Sexo=='Mujer'] ^ 2)  * c(-1, 1)
 
-# Esperanza de la media 
+#15.79248 54.33288
 
-mu_d=numeric(2)
+hombre_no_estatal = estimacion$M500_M[estimacion$Estrato2 == 'No estatal' & estimacion$Sexo=='Hombre']
+hombre_estatal =  estimacion$M500_M[estimacion$Estrato2=='Estatal' & estimacion$Sexo=='Hombre']
 
-names(mu_d) <- c('Hombre','Mujer')
+(hombre_no_estatal - hombre_estatal) + z * sqrt(
+  estimacion$se[estimacion$Estrato2=='No estatal' & estimacion$Sexo=='Hombre'] ^ 2 +
+    estimacion$se[estimacion$Estrato2=='Estatal' & estimacion$Sexo=='Hombre'] ^ 2)  * c(-1, 1)
 
-dom='Hombre'
-
-mu_d[dom] <- sum((N_h/n_h) * muestra[Sexo==dom,sum(M500_M),by=Estrato2]$V1)/sum((N_h/n_h) * muestra[Sexo==dom,length(M500_M),by=Estrato2]$V1)
-
-dom='Mujer'
-
-mu_d[dom] <- sum((N_h/n_h) * muestra[Sexo==dom,sum(M500_M),by=Estrato2]$V1)/sum((N_h/n_h) * muestra[Sexo==dom,length(M500_M),by=Estrato2]$V1)
-
-# Varianza para los dominios (Sexo)
-
-var_dom=numeric(2)
-
-names(var_dom) <- c('Hombre','Mujer')
-
-dom='Hombre'
-
-var_dom[dom] <- (1/N_d[dom]^2)*sum((N_h^2/n_h)*(1-n_h/N_h)*(((N_dh[dom,]-1)/(N_h-1))*var_dh[Sexo==dom,V1]+(N_dh[dom,]/(N_h-1))*(1-N_dh[dom,]/N_h)*(mu_dh[Sexo==dom,V1]-mu_d[dom])^2))
-
-dom <- 'Mujer'
-
-var_dom[dom] <- (1/N_d[dom]^2)*sum((N_h^2/n_h)*(1-n_h/N_h)*(((N_dh[dom,]-1)/(N_h-1))*var_dh[Sexo==dom,V1]+(N_dh[dom,]/(N_h-1))*(1-N_dh[dom,]/N_h)*(mu_dh[Sexo==dom,V1]-mu_d[dom])^2))
-
-# Hallamos un interalo de confianza
-
-Y_mujer <- mu_dh[ Sexo=='Mujer', V1]
-
-n_dh <- table(muestra$Sexo,muestra$Estrato2)
-
-var_Y_mujer <- (1-n_dh[2,] / N_dh[2,]) * var_dh [ Sexo == 'Mujer',V1] / n_dh[2,]
-
-c((Y_mujer[1] - Y_mujer[2]) - qnorm(0.975) * sqrt(sum(var_Y_mujer)), (Y_mujer[1] - Y_mujer[2]) + qnorm(0.975) * sqrt(sum(var_Y_mujer)))
-
-
-Y_hombre <-  mu_dh[Sexo=='Hombre',V1]
-
-n_dh <- table( muestrap$Sexo, muestra$Estrato2)
-
-var_Y_hombre <- (1-n_dh[2,] / N_dh[2,]) * var_dh[Sexo=='Hombre',V1] / n_dh[2,]
-
-c ( (Y_hombre[1] - Y_hombre[2]) - qnorm(0.975) * sqrt ( sum(var_Y_hombre ) ), (Y_hombre[1]-Y_hombre[2]) + qnorm(0.975) * sqrt ( sum(var_Y_hombre ) ) ) 
-
-
-
-
-
+# 19.46436 52.01733
 
