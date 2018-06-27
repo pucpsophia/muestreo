@@ -1,0 +1,320 @@
+NUM;Encuestado;CARGO;P3;EXP. BIM;P5;BIM;ESTRATO;DISTRITO;SECTOR;CONG
+1;Ingeniero(a) Civil;Residente de Obra;02. 6 a 10;0;SI;NO;LIMA TOP;SURCO;A;SURCOA
+2;Ingeniero(a) Civil;Residente de Obra;03. 11 a 15;0;SI;NO;LIMA TOP;SURCO;A;SURCOA
+3;Ingeniero(a) Civil;Jefe de Oficina Técnica;03. 11 a 15;1 a 2;SI;NO;LIMA CENTRO;BREÑA;A;BREÑAA
+4;Ingeniero(a) Civil;Jefe de Oficina Técnica;02. 6 a 10;1 a 2;SI;SI;LIMA TOP;SURCO;A;SURCOA
+5;Ingeniero(a) Civil;Residente de Obra;03. 11 a 15;0;SI;NO;LIMA TOP;SURCO;A;SURCOA
+6;Ingeniero(a) Civil;Residente de Obra;03. 11 a 15;1 a 2;SI;SI;LIMA TOP;SURCO;A;SURCOA
+7;Ingeniero(a) Civil;Residente de Obra;04. Más de 15;0;SI;NO;LIMA TOP;SURCO;A;SURCOA
+8;Ingeniero(a) Civil;Jefe de Oficina Técnica;01. 1 a 5;1 a 2;SI;SI;LIMA TOP;SURCO;A;SURCOA
+9;Ingeniero(a) Civil;Residente de Obra;02. 6 a 10;0;SI;NO;LIMA TOP;SURCO;A;SURCOA
+10;Ingeniero(a) Civil;Residente de Obra;02. 6 a 10;0;SI;NO;LIMA TOP;SURCO;A;SURCOA
+11;Ingeniero(a) Civil;Jefe de Oficina Técnica;02. 6 a 10;1 a 2;SI;SI;LIMA TOP;SURCO;B;SURCOB
+12;Ingeniero(a) Civil;Residente de Obra;02. 6 a 10;0;SI;NO;LIMA TOP;SURCO;B;SURCOB
+13;Ingeniero(a) Civil;Residente de Obra;02. 6 a 10;1 a 2;SI;NO;LIMA TOP;SAN BORJA;A;SAN BORJAA
+14;Ingeniero(a) Civil;Residente de Obra;01. 1 a 5;0;SI;NO;LIMA TOP;SAN BORJA;A;SAN BORJAA
+15;Arquitecto(a);Residente de Obra;04. Más de 15;0;SI;NO;LIMA TOP;SURCO;B;SURCOB
+16;Arquitecto(a);Residente de Obra;02. 6 a 10;0;SI;NO;LIMA TOP;SURCO;B;SURCOB
+17;Ingeniero(a) Civil;Jefe de Campo;01. 1 a 5;0;NO;NO;LIMA TOP;SAN BORJA;A;SAN BORJAA
+18;Ingeniero(a) Civil;Residente de Obra;03. 11 a 15;0;NO;NO;LIMA TOP;SURCO;B;SURCOB
+19;Arquitecto(a);Jefe de Campo;01. 1 a 5;1 a 2;SI;NO;LIMA TOP;MIRAFLORES;A;MIRAFLORESA
+20;Ingeniero(a) Civil;Jefe de Campo;01. 1 a 5;1 a 2;SI;SI;LIMA TOP;BARRANCO;A;BARRANCOA
+21;Ingeniero(a) Civil;Jefe de Campo;02. 6 a 10;1 a 2;SI;SI;LIMA TOP;MIRAFLORES;B;MIRAFLORESB
+22;Ingeniero(a) Civil;Residente de Obra;04. Más de 15;1 a 2;SI;SI;LIMA TOP;MIRAFLORES;B;MIRAFLORESB
+23;Arquitecto(a);Jefe de Campo;01. 1 a 5;1 a 2;SI;NO;LIMA TOP;BARRANCO;A;BARRANCOA
+24;Arquitecto(a);Residente de Obra;04. Más de 15;0;SI;NO;LIMA MODERNA;SURQUILLO;A;SURQUILLOA
+25;Arquitecto(a);Residente de Obra;02. 6 a 10;1 a 2;SI;SI;LIMA MODERNA;SURQUILLO;B;SURQUILLOB
+26;Arquitecto(a);Jefe de Oficina Técnica;01. 1 a 5;0;SI;NO;LIMA MODERNA;SURQUILLO;A;SURQUILLOA
+27;Ingeniero(a) Civil;Residente de Obra;04. Más de 15;0;SI;NO;LIMA TOP;SAN BORJA;B;SAN BORJAB
+28;Ingeniero(a) Civil;Jefe de Campo;02. 6 a 10;1 a 2;SI;SI;LIMA TOP;SAN BORJA;B;SAN BORJAB
+29;Ingeniero(a) Civil;Residente de Obra;02. 6 a 10;0;SI;NO;LIMA MODERNA;SURQUILLO;B;SURQUILLOB
+30;Ingeniero(a) Civil;Gerente Proyecto;03. 11 a 15;1 a 2;SI;SI;LIMA TOP;SAN BORJA;B;SAN BORJAB
+31;Arquitecto(a);Gerente Proyecto;02. 6 a 10;1 a 2;SI;SI;LIMA MODERNA;SAN MIGUEL;A;SAN MIGUELA
+32;Ingeniero(a) Civil;Jefe de Oficina Técnica;02. 6 a 10;0;SI;NO;LIMA MODERNA;PUEBLO LIBRE;A;PUEBLO LIBREA
+33;Ingeniero(a) Civil;Residente de Obra;04. Más de 15;0;SI;NO;LIMA MODERNA;PUEBLO LIBRE;A;PUEBLO LIBREA
+34;Ingeniero(a) Civil;Residente de Obra;03. 11 a 15;0;SI;NO;LIMA MODERNA;PUEBLO LIBRE;A;PUEBLO LIBREA
+35;Arquitecto(a);Gerente Proyecto;02. 6 a 10;0;SI;NO;LIMA MODERNA;JESUS MARIA;C;JESUS MARIAC
+36;Arquitecto(a);Gerente Proyecto;02. 6 a 10;0;SI;NO;LIMA MODERNA;JESUS MARIA;A;JESUS MARIAA
+37;Ingeniero(a) Civil;Jefe de Campo;03. 11 a 15;1 a 2;SI;SI;LIMA TOP;SURCO;B;SURCOB
+38;Ingeniero(a) Civil;Residente de Obra;04. Más de 15;0;SI;NO;LIMA TOP;SURCO;A;SURCOA
+39;Ingeniero(a) Civil;Residente de Obra;04. Más de 15;1 a 2;SI;SI;LIMA TOP;SAN ISIDRO;B;SAN ISIDROB
+40;Ingeniero(a) Civil;Jefe de Campo;02. 6 a 10;0;SI;NO;LIMA MODERNA;SURQUILLO;C;SURQUILLOC
+41;Arquitecto(a);Gerente Proyecto;02. 6 a 10;0;SI;NO;LIMA MODERNA;MAGDALENA;A;MAGDALENAA
+42;Arquitecto(a);Gerente Proyecto;02. 6 a 10;0;SI;NO;LIMA TOP;SAN BORJA;B;SAN BORJAB
+43;Ingeniero(a) Civil;Residente de Obra;04. Más de 15;3 a 4;SI;SI;LIMA MODERNA;SURQUILLO;C;SURQUILLOC
+44;Ingeniero(a) Civil;Jefe de Oficina Técnica;01. 1 a 5;1 a 2;SI;SI;LIMA TOP;MIRAFLORES;A;MIRAFLORESA
+45;Ingeniero(a) Civil;Gerente Proyecto;04. Más de 15;0;SI;NO;LIMA TOP;BARRANCO;A;BARRANCOA
+46;Ingeniero(a) Civil;Residente de Obra;01. 1 a 5;0;SI;NO;LIMA TOP;SURCO;A;SURCOA
+47;Ingeniero(a) Civil;Residente de Obra;03. 11 a 15;0;SI;NO;LIMA SUR;CHORRILLOS;C;CHORRILLOSC
+48;Ingeniero(a) Civil;Residente de Obra;02. 6 a 10;0;SI;NO;LIMA TOP;SAN BORJA;A;SAN BORJAA
+49;Ingeniero(a) Civil;Residente de Obra;04. Más de 15;0;SI;NO;LIMA TOP;SAN BORJA;A;SAN BORJAA
+50;Ingeniero(a) Civil;Residente de Obra;02. 6 a 10;3 a 4;SI;SI;LIMA TOP;MIRAFLORES;B;MIRAFLORESB
+51;Ingeniero(a) Civil;Residente de Obra;04. Más de 15;1 a 2;SI;SI;LIMA TOP;MIRAFLORES;B;MIRAFLORESB
+52;Ingeniero(a) Civil;Residente de Obra;02. 6 a 10;0;SI;NO;LIMA NORTE;CARABAYLLO;A;CARABAYLLOA
+53;Ingeniero(a) Civil;Residente de Obra;02. 6 a 10;0;SI;NO;LIMA TOP;BARRANCO;A;BARRANCOA
+54;Ingeniero(a) Civil;Residente de Obra;04. Más de 15;0;SI;NO;LIMA CENTRO;LA VICTORIA;A;LA VICTORIAA
+55;Ingeniero(a) Civil;Residente de Obra;03. 11 a 15;1 a 2;SI;SI;LIMA CENTRO;CERCADO LIMA;A;CERCADO LIMAA
+56;Ingeniero(a) Civil;Residente de Obra;02. 6 a 10;0;SI;NO;LIMA CENTRO;CERCADO LIMA;A;CERCADO LIMAA
+57;Ingeniero(a) Civil;Residente de Obra;02. 6 a 10;0;SI;NO;LIMA CENTRO;CERCADO LIMA;A;CERCADO LIMAA
+58;Ingeniero(a) Civil;Jefe de Oficina Técnica;01. 1 a 5;1 a 2;SI;SI;LIMA MODERNA;LINCE;A;LINCEA
+59;Ingeniero(a) Civil;Residente de Obra;02. 6 a 10;0;SI;NO;LIMA MODERNA;LINCE;A;LINCEA
+60;Ingeniero(a) Civil;Residente de Obra;04. Más de 15;0;SI;NO;LIMA MODERNA;LINCE;A;LINCEA
+61;Ingeniero(a) Civil;Residente de Obra;03. 11 a 15;0;SI;NO;LIMA MODERNA;LINCE;A;LINCEA
+62;Ingeniero(a) Civil;Residente de Obra;03. 11 a 15;0;SI;NO;LIMA MODERNA;SAN MIGUEL;A;SAN MIGUELA
+63;Ingeniero(a) Civil;Residente de Obra;04. Más de 15;0;SI;NO;LIMA MODERNA;SAN MIGUEL;A;SAN MIGUELA
+64;Ingeniero(a) Civil;Residente de Obra;02. 6 a 10;0;SI;NO;LIMA MODERNA;MAGDALENA;A;MAGDALENAA
+65;Ingeniero(a) Civil;Residente de Obra;03. 11 a 15;0;SI;NO;LIMA MODERNA;MAGDALENA;A;MAGDALENAA
+66;Ingeniero(a) Civil;Jefe de Campo;01. 1 a 5;1 a 2;SI;SI;LIMA MODERNA;MAGDALENA;A;MAGDALENAA
+67;Arquitecto(a);Residente de Obra;03. 11 a 15;0;SI;NO;LIMA MODERNA;MAGDALENA;A;MAGDALENAA
+68;Ingeniero(a) Civil;Residente de Obra;02. 6 a 10;0;SI;NO;LIMA MODERNA;MAGDALENA;C;MAGDALENAC
+69;Ingeniero(a) Civil;Jefe de Campo;02. 6 a 10;0;SI;NO;LIMA MODERNA;MAGDALENA;C;MAGDALENAC
+70;Ingeniero(a) Civil;Residente de Obra;01. 1 a 5;0;SI;NO;LIMA MODERNA;SAN MIGUEL;A;SAN MIGUELA
+71;Ingeniero(a) Civil;Jefe de Campo;01. 1 a 5;0;SI;NO;LIMA MODERNA;SAN MIGUEL;B;SAN MIGUELB
+72;Ingeniero(a) Civil;Jefe de Oficina Técnica;02. 6 a 10;1 a 2;SI;NO;LIMA MODERNA;SAN MIGUEL;A;SAN MIGUELA
+73;Ingeniero(a) Civil;Residente de Obra;02. 6 a 10;0;SI;NO;LIMA MODERNA;SAN MIGUEL;B;SAN MIGUELB
+74;Ingeniero(a) Civil;Residente de Obra;02. 6 a 10;0;SI;NO;LIMA MODERNA;MAGDALENA;C;MAGDALENAC
+75;Ingeniero(a) Civil;Residente de Obra;02. 6 a 10;1 a 2;SI;SI;LIMA TOP;MIRAFLORES;B;MIRAFLORESB
+76;Ingeniero(a) Civil;Residente de Obra;03. 11 a 15;1 a 2;SI;SI;LIMA TOP;SAN ISIDRO;A;SAN ISIDROA
+77;Ingeniero(a) Civil;Jefe de Campo;02. 6 a 10;1 a 2;SI;NO;LIMA SUR;CHORRILLOS;C;CHORRILLOSC
+78;Ingeniero(a) Civil;Jefe de Campo;01. 1 a 5;1 a 2;SI;NO;LIMA SUR;CHORRILLOS;C;CHORRILLOSC
+79;Ingeniero(a) Civil;Gerente Proyecto;02. 6 a 10;1 a 2;SI;SI;LIMA SUR;CHORRILLOS;C;CHORRILLOSC
+80;Ingeniero(a) Civil;Residente de Obra;04. Más de 15;0;SI;NO;LIMA SUR;CHORRILLOS;A;CHORRILLOSA
+81;Ingeniero(a) Civil;Residente de Obra;04. Más de 15;0;SI;NO;LIMA SUR;CHORRILLOS;A;CHORRILLOSA
+82;Ingeniero(a) Civil;Residente de Obra;03. 11 a 15;0;SI;NO;LIMA SUR;CHORRILLOS;C;CHORRILLOSC
+83;Ingeniero(a) Civil;Gerente Proyecto;04. Más de 15;1 a 2;SI;NO;LIMA CENTRO;LA VICTORIA;A;LA VICTORIAA
+84;Ingeniero(a) Civil;Jefe de Oficina Técnica;01. 1 a 5;0;SI;NO;LIMA TOP;SAN BORJA;A;SAN BORJAA
+85;Ingeniero(a) Civil;Jefe de Campo;02. 6 a 10;0;SI;NO;LIMA TOP;SAN BORJA;A;SAN BORJAA
+86;Ingeniero(a) Civil;Jefe de Campo;02. 6 a 10;0;SI;NO;LIMA TOP;SAN BORJA;A;SAN BORJAA
+87;Ingeniero(a) Civil;Residente de Obra;03. 11 a 15;0;SI;NO;LIMA TOP;SAN BORJA;A;SAN BORJAA
+88;Ingeniero(a) Civil;Residente de Obra;03. 11 a 15;0;SI;NO;LIMA TOP;SAN BORJA;A;SAN BORJAA
+89;Ingeniero(a) Civil;Jefe de Oficina Técnica;02. 6 a 10;0;SI;NO;LIMA TOP;SAN BORJA;A;SAN BORJAA
+90;Ingeniero(a) Civil;Jefe de Oficina Técnica;02. 6 a 10;1 a 2;SI;SI;LIMA TOP;SAN BORJA;A;SAN BORJAA
+91;Ingeniero(a) Civil;Residente de Obra;03. 11 a 15;0;SI;NO;LIMA TOP;SAN BORJA;B;SAN BORJAB
+92;Ingeniero(a) Civil;Jefe de Campo;01. 1 a 5;0;SI;NO;LIMA TOP;SAN BORJA;A;SAN BORJAA
+93;Ingeniero(a) Civil;Residente de Obra;04. Más de 15;0;SI;NO;LIMA TOP;BARRANCO;A;BARRANCOA
+94;Ingeniero(a) Civil;Jefe de Campo;04. Más de 15;0;SI;NO;LIMA TOP;BARRANCO;A;BARRANCOA
+95;Ingeniero(a) Civil;Jefe de Campo;02. 6 a 10;1 a 2;SI;SI;LIMA TOP;BARRANCO;A;BARRANCOA
+96;Arquitecto(a);Residente de Obra;03. 11 a 15;0;SI;NO;LIMA TOP;BARRANCO;A;BARRANCOA
+97;Ingeniero(a) Civil;Residente de Obra;03. 11 a 15;0;SI;NO;LIMA TOP;BARRANCO;A;BARRANCOA
+98;Ingeniero(a) Civil;Jefe de Campo;01. 1 a 5;0;SI;NO;LIMA TOP;BARRANCO;A;BARRANCOA
+99;Ingeniero(a) Civil;Residente de Obra;04. Más de 15;0;SI;NO;LIMA TOP;BARRANCO;A;BARRANCOA
+100;Ingeniero(a) Civil;Residente de Obra;03. 11 a 15;0;SI;NO;LIMA TOP;BARRANCO;A;BARRANCOA
+101;Ingeniero(a) Civil;Gerente Proyecto;03. 11 a 15;1 a 2;SI;SI;LIMA TOP;BARRANCO;A;BARRANCOA
+102;Ingeniero(a) Civil;Jefe de Campo;01. 1 a 5;0;SI;NO;LIMA TOP;BARRANCO;A;BARRANCOA
+103;Ingeniero(a) Civil;Jefe de Campo;02. 6 a 10;0;SI;NO;LIMA TOP;BARRANCO;A;BARRANCOA
+104;Arquitecto(a);Residente de Obra;02. 6 a 10;0;SI;NO;LIMA TOP;BARRANCO;A;BARRANCOA
+105;Ingeniero(a) Civil;Residente de Obra;04. Más de 15;0;SI;NO;LIMA TOP;BARRANCO;A;BARRANCOA
+106;Ingeniero(a) Civil;Residente de Obra;03. 11 a 15;0;SI;NO;CALLAO;BELLAVISTA;A;BELLAVISTAA
+107;Ingeniero(a) Civil;Residente de Obra;02. 6 a 10;0;NO;NO;CALLAO;BELLAVISTA;A;BELLAVISTAA
+108;Ingeniero(a) Civil;Residente de Obra;02. 6 a 10;0;SI;NO;CALLAO;BELLAVISTA;A;BELLAVISTAA
+109;Ingeniero(a) Civil;Residente de Obra;03. 11 a 15;0;SI;NO;CALLAO;BELLAVISTA;A;BELLAVISTAA
+110;Ingeniero(a) Civil;Jefe de Campo;02. 6 a 10;0;SI;NO;LIMA NORTE;LOS OLIVOS;B;LOS OLIVOSB
+111;Arquitecto(a);Gerente Proyecto;02. 6 a 10;1 a 2;SI;SI;LIMA NORTE;LOS OLIVOS;B;LOS OLIVOSB
+112;Ingeniero(a) Civil;Jefe de Campo;02. 6 a 10;0;NO;NO;LIMA NORTE;LOS OLIVOS;B;LOS OLIVOSB
+113;Ingeniero(a) Civil;Jefe de Oficina Técnica;01. 1 a 5;0;SI;NO;LIMA NORTE;LOS OLIVOS;B;LOS OLIVOSB
+114;Ingeniero(a) Civil;Jefe de Oficina Técnica;03. 11 a 15;1 a 2;SI;SI;LIMA MODERNA;MAGDALENA;A;MAGDALENAA
+115;Arquitecto(a);Jefe de Campo;01. 1 a 5;0;SI;NO;LIMA MODERNA;MAGDALENA;A;MAGDALENAA
+116;Arquitecto(a);Jefe de Oficina Técnica;02. 6 a 10;0;SI;NO;LIMA MODERNA;MAGDALENA;A;MAGDALENAA
+117;Ingeniero(a) Civil;Jefe de Campo;01. 1 a 5;0;SI;NO;LIMA MODERNA;MAGDALENA;A;MAGDALENAA
+118;Ingeniero(a) Civil;Jefe de Oficina Técnica;01. 1 a 5;1 a 2;SI;SI;LIMA MODERNA;MAGDALENA;A;MAGDALENAA
+119;Ingeniero(a) Civil;Jefe de Campo;02. 6 a 10;0;NO;NO;LIMA MODERNA;MAGDALENA;A;MAGDALENAA
+120;Ingeniero(a) Civil;Residente de Obra;03. 11 a 15;0;SI;NO;LIMA MODERNA;MAGDALENA;A;MAGDALENAA
+121;Ingeniero(a) Civil;Residente de Obra;02. 6 a 10;0;SI;NO;LIMA MODERNA;MAGDALENA;A;MAGDALENAA
+122;Ingeniero(a) Civil;Residente de Obra;03. 11 a 15;0;SI;NO;LIMA MODERNA;MAGDALENA;A;MAGDALENAA
+123;Ingeniero(a) Civil;Residente de Obra;03. 11 a 15;0;SI;NO;LIMA MODERNA;MAGDALENA;A;MAGDALENAA
+124;Ingeniero(a) Civil;Jefe de Campo;02. 6 a 10;0;SI;NO;LIMA MODERNA;MAGDALENA;A;MAGDALENAA
+125;Ingeniero(a) Civil;Residente de Obra;03. 11 a 15;0;SI;NO;LIMA MODERNA;MAGDALENA;A;MAGDALENAA
+126;Ingeniero(a) Civil;Jefe de Campo;02. 6 a 10;0;SI;NO;LIMA MODERNA;MAGDALENA;A;MAGDALENAA
+127;Ingeniero(a) Civil;Jefe de Campo;02. 6 a 10;0;SI;NO;LIMA MODERNA;MAGDALENA;A;MAGDALENAA
+128;Ingeniero(a) Civil;Residente de Obra;03. 11 a 15;0;SI;NO;LIMA MODERNA;MAGDALENA;A;MAGDALENAA
+129;Ingeniero(a) Civil;Jefe de Campo;03. 11 a 15;0;NO;NO;LIMA MODERNA;SURQUILLO;A;SURQUILLOA
+130;Ingeniero(a) Civil;Jefe de Campo;03. 11 a 15;0;SI;NO;LIMA MODERNA;SURQUILLO;A;SURQUILLOA
+131;Arquitecto(a);Jefe de Campo;02. 6 a 10;0;SI;NO;LIMA TOP;SURCO;A;SURCOA
+132;Arquitecto(a);Residente de Obra;03. 11 a 15;0;NO;NO;LIMA ESTE;ATE;A;ATEA
+133;Arquitecto(a);Jefe de Campo;01. 1 a 5;0;SI;NO;LIMA ESTE;ATE;A;ATEA
+134;Arquitecto(a);Jefe de Oficina Técnica;03. 11 a 15;3 a 4;SI;SI;LIMA ESTE;ATE;A;ATEA
+135;Ingeniero(a) Civil;Jefe de Campo;01. 1 a 5;0;SI;NO;LIMA ESTE;ATE;A;ATEA
+136;Ingeniero(a) Civil;Jefe de Oficina Técnica;02. 6 a 10;0;SI;NO;LIMA ESTE;ATE;A;ATEA
+137;Ingeniero(a) Civil;Jefe de Campo;04. Más de 15;3 a 4;SI;SI;LIMA ESTE;SANTA ANITA;A;SANTA ANITAA
+138;Ingeniero(a) Civil;Jefe de Campo;01. 1 a 5;0;NO;NO;LIMA ESTE;ATE;A;ATEA
+139;Ingeniero(a) Civil;Residente de Obra;04. Más de 15;0;NO;NO;CALLAO;VENTANILLA;A;VENTANILLAA
+140;Ingeniero(a) Civil;Residente de Obra;03. 11 a 15;0;SI;NO;LIMA MODERNA;MAGDALENA;A;MAGDALENAA
+141;Ingeniero(a) Civil;Gerente Proyecto;02. 6 a 10;1 a 2;SI;SI;LIMA NORTE;ANCON/INDEP;A;ANCON/INDEPA
+142;Ingeniero(a) Civil;Jefe de Campo;01. 1 a 5;0;SI;NO;LIMA CENTRO;BREÑA;A;BREÑAA
+143;Ingeniero(a) Civil;Jefe de Oficina Técnica;02. 6 a 10;0;SI;NO;LIMA CENTRO;BREÑA;A;BREÑAA
+144;Ingeniero(a) Civil;Residente de Obra;02. 6 a 10;0;SI;NO;LIMA CENTRO;BREÑA;A;BREÑAA
+145;Ingeniero(a) Civil;Jefe de Oficina Técnica;01. 1 a 5;0;SI;NO;LIMA CENTRO;BREÑA;A;BREÑAA
+146;Ingeniero(a) Civil;Residente de Obra;02. 6 a 10;0;SI;NO;CALLAO;CALLAO;A;CALLAOA
+147;Ingeniero(a) Civil;Jefe de Oficina Técnica;01. 1 a 5;0;SI;NO;LIMA SUR;CHORRILLOS;C;CHORRILLOSC
+148;Ingeniero(a) Civil;Residente de Obra;04. Más de 15;5 a más;SI;SI;LIMA SUR;CHORRILLOS;C;CHORRILLOSC
+149;Ingeniero(a) Civil;Jefe de Oficina Técnica;01. 1 a 5;0;SI;NO;LIMA SUR;CHORRILLOS;C;CHORRILLOSC
+150;Ingeniero(a) Civil;Residente de Obra;01. 1 a 5;0;SI;NO;LIMA SUR;CHORRILLOS;A;CHORRILLOSA
+151;Ingeniero(a) Civil;Jefe de Oficina Técnica;01. 1 a 5;0;SI;NO;LIMA SUR;CHORRILLOS;C;CHORRILLOSC
+152;Ingeniero(a) Civil;Jefe de Oficina Técnica;02. 6 a 10;0;SI;SI;LIMA NORTE;COMAS;A;COMASA
+153;Ingeniero(a) Civil;Residente de Obra;02. 6 a 10;0;SI;NO;LIMA NORTE;COMAS;A;COMASA
+154;Ingeniero(a) Civil;Jefe de Oficina Técnica;01. 1 a 5;1 a 2;SI;SI;LIMA ESTE;EL AGUSTINO;A;EL AGUSTINOA
+155;Ingeniero(a) Civil;Jefe de Oficina Técnica;01. 1 a 5;1 a 2;SI;NO;LIMA NORTE;ANCON/INDEP;A;ANCON/INDEPA
+156;Arquitecto(a);Jefe de Oficina Técnica;01. 1 a 5;1 a 2;SI;SI;LIMA MODERNA;JESUS MARIA;C;JESUS MARIAC
+157;Ingeniero(a) Civil;Jefe de Oficina Técnica;02. 6 a 10;0;SI;NO;LIMA MODERNA;JESUS MARIA;B;JESUS MARIAB
+158;Ingeniero(a) Civil;Residente de Obra;02. 6 a 10;0;SI;NO;LIMA MODERNA;JESUS MARIA;B;JESUS MARIAB
+159;Ingeniero(a) Civil;Residente de Obra;02. 6 a 10;3 a 4;SI;SI;LIMA MODERNA;JESUS MARIA;A;JESUS MARIAA
+160;Ingeniero(a) Civil;Gerente Proyecto;03. 11 a 15;3 a 4;SI;NO;LIMA NORTE;LOS OLIVOS;B;LOS OLIVOSB
+161;Ingeniero(a) Civil;Residente de Obra;04. Más de 15;1 a 2;SI;NO;LIMA NORTE;LOS OLIVOS;B;LOS OLIVOSB
+162;Ingeniero(a) Civil;Gerente Proyecto;04. Más de 15;3 a 4;SI;SI;LIMA CENTRO;LA VICTORIA;A;LA VICTORIAA
+163;Ingeniero(a) Civil;Residente de Obra;02. 6 a 10;0;NO;NO;LIMA MODERNA;LINCE;A;LINCEA
+164;Arquitecto(a);Jefe de Oficina Técnica;01. 1 a 5;3 a 4;SI;SI;LIMA MODERNA;LINCE;A;LINCEA
+165;Ingeniero(a) Civil;Gerente Proyecto;03. 11 a 15;1 a 2;SI;NO;LIMA MODERNA;LINCE;A;LINCEA
+166;Ingeniero(a) Civil;Jefe de Oficina Técnica;01. 1 a 5;0;SI;NO;LIMA MODERNA;LINCE;A;LINCEA
+167;Arquitecto(a);Jefe de Oficina Técnica;02. 6 a 10;5 a más;SI;SI;LIMA MODERNA;MAGDALENA;A;MAGDALENAA
+168;Arquitecto(a);Jefe de Oficina Técnica;01. 1 a 5;3 a 4;SI;SI;LIMA MODERNA;MAGDALENA;A;MAGDALENAA
+169;Ingeniero(a) Civil;Jefe de Oficina Técnica;01. 1 a 5;3 a 4;SI;SI;LIMA MODERNA;MAGDALENA;C;MAGDALENAC
+170;Arquitecto(a);Jefe de Oficina Técnica;01. 1 a 5;0;SI;NO;LIMA TOP;MIRAFLORES;A;MIRAFLORESA
+171;Ingeniero(a) Civil;Jefe de Campo;01. 1 a 5;0;SI;NO;LIMA TOP;MIRAFLORES;B;MIRAFLORESB
+172;Ingeniero(a) Civil;Residente de Obra;01. 1 a 5;1 a 2;SI;SI;LIMA TOP;MIRAFLORES;B;MIRAFLORESB
+173;Ingeniero(a) Civil;Residente de Obra;04. Más de 15;1 a 2;SI;NO;LIMA TOP;MIRAFLORES;A;MIRAFLORESA
+174;Arquitecto(a);Residente de Obra;01. 1 a 5;0;SI;NO;LIMA SUR;PUNTA HERMOSA/NEGRA;A;PUNTA HERMOSA/NEGRAA
+175;Ingeniero(a) Civil;Jefe de Oficina Técnica;01. 1 a 5;0;SI;NO;LIMA MODERNA;PUEBLO LIBRE;A;PUEBLO LIBREA
+176;Ingeniero(a) Civil;Jefe de Oficina Técnica;01. 1 a 5;0;SI;SI;LIMA MODERNA;PUEBLO LIBRE;A;PUEBLO LIBREA
+177;Ingeniero(a) Civil;Jefe de Oficina Técnica;02. 6 a 10;1 a 2;SI;NO;LIMA SUR;SAN BARTOLO;A;SAN BARTOLOA
+178;Ingeniero(a) Civil;Jefe de Oficina Técnica;01. 1 a 5;1 a 2;SI;NO;LIMA TOP;SAN BORJA;A;SAN BORJAA
+179;Ingeniero(a) Civil;Jefe de Campo;01. 1 a 5;0;SI;NO;LIMA TOP;SAN BORJA;B;SAN BORJAB
+180;Ingeniero(a) Civil;Jefe de Oficina Técnica;01. 1 a 5;0;SI;NO;LIMA TOP;SAN BORJA;A;SAN BORJAA
+181;Ingeniero(a) Civil;Residente de Obra;02. 6 a 10;3 a 4;SI;NO;LIMA TOP;SAN BORJA;A;SAN BORJAA
+182;Ingeniero(a) Civil;Jefe de Oficina Técnica;02. 6 a 10;0;SI;NO;LIMA TOP;SAN BORJA;B;SAN BORJAB
+183;Ingeniero(a) Civil;Residente de Obra;04. Más de 15;3 a 4;SI;SI;LIMA TOP;SAN ISIDRO;A;SAN ISIDROA
+184;Arquitecto(a);Jefe de Campo;02. 6 a 10;3 a 4;SI;SI;LIMA TOP;SAN ISIDRO;A;SAN ISIDROA
+185;Ingeniero(a) Civil;Jefe de Campo;03. 11 a 15;0;SI;NO;LIMA TOP;SAN ISIDRO;A;SAN ISIDROA
+186;Arquitecto(a);Jefe de Oficina Técnica;03. 11 a 15;0;SI;NO;LIMA TOP;SAN ISIDRO;A;SAN ISIDROA
+187;Ingeniero(a) Civil;Gerente Proyecto;02. 6 a 10;1 a 2;SI;NO;LIMA TOP;SAN ISIDRO;A;SAN ISIDROA
+188;Ingeniero(a) Civil;Jefe de Oficina Técnica;02. 6 a 10;1 a 2;SI;SI;LIMA TOP;SAN ISIDRO;B;SAN ISIDROB
+189;Ingeniero(a) Civil;Gerente Proyecto;04. Más de 15;0;SI;NO;LIMA TOP;SAN ISIDRO;A;SAN ISIDROA
+190;Ingeniero(a) Civil;Jefe de Campo;04. Más de 15;0;SI;NO;LIMA NORTE;SMP;A;SMPA
+191;Ingeniero(a) Civil;Residente de Obra;01. 1 a 5;3 a 4;SI;NO;LIMA MODERNA;SAN MIGUEL;B;SAN MIGUELB
+192;Ingeniero(a) Civil;Residente de Obra;04. Más de 15;0;NO;NO;LIMA MODERNA;SAN MIGUEL;B;SAN MIGUELB
+193;Ingeniero(a) Civil;Residente de Obra;03. 11 a 15;0;NO;NO;LIMA MODERNA;SAN MIGUEL;B;SAN MIGUELB
+194;Ingeniero(a) Civil;Residente de Obra;01. 1 a 5;1 a 2;SI;NO;LIMA MODERNA;SAN MIGUEL;B;SAN MIGUELB
+195;Ingeniero(a) Civil;Jefe de Oficina Técnica;04. Más de 15;0;SI;NO;LIMA ESTE;SANTA ANITA;A;SANTA ANITAA
+196;Ingeniero(a) Civil;Residente de Obra;03. 11 a 15;0;SI;SI;LIMA TOP;SURCO;B;SURCOB
+197;Ingeniero(a) Civil;Jefe de Campo;01. 1 a 5;0;SI;NO;LIMA TOP;SURCO;B;SURCOB
+198;Arquitecto(a);Residente de Obra;01. 1 a 5;0;SI;NO;LIMA TOP;SURCO;B;SURCOB
+199;Arquitecto(a);Gerente Proyecto;03. 11 a 15;0;SI;NO;LIMA TOP;SURCO;A;SURCOA
+200;Ingeniero(a) Civil;Jefe de Oficina Técnica;01. 1 a 5;1 a 2;SI;NO;LIMA MODERNA;SURQUILLO;B;SURQUILLOB
+201;Arquitecto(a);Jefe de Campo;01. 1 a 5;0;SI;NO;CALLAO;VENTANILLA;A;VENTANILLAA
+202;Ingeniero(a) Civil;Jefe de Oficina Técnica;02. 6 a 10;1 a 2;SI;NO;LIMA SUR;LURIN/PACH/VES;A;LURIN/PACH/VESA
+203;Arquitecto(a);Jefe de Campo;01. 1 a 5;0;SI;NO;LIMA NORTE;CARABAYLLO;A;CARABAYLLOA
+204;Ingeniero(a) Civil;Residente de Obra;01. 1 a 5;0;NO;NO;LIMA SUR;CHORRILLOS;C;CHORRILLOSC
+205;Ingeniero(a) Civil;Jefe de Campo;01. 1 a 5;1 a 2;SI;SI;LIMA NORTE;COMAS;A;COMASA
+206;Ingeniero(a) Civil;Jefe de Oficina Técnica;01. 1 a 5;1 a 2;SI;SI;LIMA NORTE;COMAS;A;COMASA
+207;Ingeniero(a) Civil;Jefe de Oficina Técnica;01. 1 a 5;0;SI;SI;LIMA NORTE;COMAS;A;COMASA
+208;Ingeniero(a) Civil;Jefe de Campo;01. 1 a 5;0;SI;NO;LIMA NORTE;LOS OLIVOS;B;LOS OLIVOSB
+209;Ingeniero(a) Civil;Jefe de Campo;04. Más de 15;3 a 4;SI;SI;LIMA SUR;LURIN/PACH/VES;A;LURIN/PACH/VESA
+210;Ingeniero(a) Civil;Jefe de Campo;01. 1 a 5;1 a 2;SI;NO;LIMA TOP;MIRAFLORES;B;MIRAFLORESB
+211;Arquitecto(a);Gerente Proyecto;02. 6 a 10;0;SI;NO;LIMA SUR;LURIN/PACH/VES;A;LURIN/PACH/VESA
+212;Arquitecto(a);Residente de Obra;02. 6 a 10;0;SI;NO;LIMA SUR;PUNTA HERMOSA/NEGRA;A;PUNTA HERMOSA/NEGRAA
+213;Ingeniero(a) Civil;Jefe de Campo;03. 11 a 15;0;SI;NO;LIMA SUR;SAN JUAN MIRAFLORES;A;SAN JUAN MIRAFLORESA
+214;Ingeniero(a) Civil;Jefe de Campo;01. 1 a 5;0;SI;NO;LIMA SUR;SAN JUAN MIRAFLORES;A;SAN JUAN MIRAFLORESA
+215;Ingeniero(a) Civil;Jefe de Campo;01. 1 a 5;0;SI;NO;LIMA SUR;SAN JUAN MIRAFLORES;A;SAN JUAN MIRAFLORESA
+216;Ingeniero(a) Civil;Jefe de Campo;01. 1 a 5;0;SI;NO;LIMA SUR;SAN JUAN MIRAFLORES;A;SAN JUAN MIRAFLORESA
+217;Ingeniero(a) Civil;Residente de Obra;01. 1 a 5;0;SI;NO;LIMA SUR;SAN JUAN MIRAFLORES;A;SAN JUAN MIRAFLORESA
+218;Ingeniero(a) Civil;Residente de Obra;02. 6 a 10;0;SI;NO;LIMA SUR;SAN JUAN MIRAFLORES;A;SAN JUAN MIRAFLORESA
+219;Ingeniero(a) Civil;Jefe de Campo;02. 6 a 10;0;SI;NO;LIMA SUR;SAN JUAN MIRAFLORES;A;SAN JUAN MIRAFLORESA
+220;Ingeniero(a) Civil;Residente de Obra;01. 1 a 5;0;NO;NO;LIMA SUR;SAN JUAN MIRAFLORES;A;SAN JUAN MIRAFLORESA
+221;Ingeniero(a) Civil;Jefe de Campo;01. 1 a 5;0;NO;NO;LIMA MODERNA;JESUS MARIA;A;JESUS MARIAA
+222;Ingeniero(a) Civil;Residente de Obra;03. 11 a 15;0;SI;NO;LIMA TOP;SURCO;A;SURCOA
+223;Ingeniero(a) Civil;Residente de Obra;01. 1 a 5;0;SI;NO;LIMA TOP;SURCO;A;SURCOA
+224;Ingeniero(a) Civil;Jefe de Campo;01. 1 a 5;1 a 2;SI;NO;LIMA TOP;SURCO;A;SURCOA
+225;Ingeniero(a) Civil;Residente de Obra;02. 6 a 10;0;SI;NO;LIMA TOP;SURCO;A;SURCOA
+226;Ingeniero(a) Civil;Residente de Obra;02. 6 a 10;0;SI;NO;LIMA TOP;SURCO;A;SURCOA
+227;Ingeniero(a) Civil;Jefe de Campo;01. 1 a 5;0;SI;NO;LIMA TOP;SURCO;A;SURCOA
+228;Ingeniero(a) Civil;Jefe de Campo;02. 6 a 10;0;SI;NO;LIMA TOP;SURCO;A;SURCOA
+229;Ingeniero(a) Civil;Jefe de Campo;02. 6 a 10;0;SI;NO;LIMA TOP;SURCO;A;SURCOA
+230;Ingeniero(a) Civil;Jefe de Campo;03. 11 a 15;0;SI;NO;LIMA TOP;SURCO;B;SURCOB
+231;Ingeniero(a) Civil;Residente de Obra;01. 1 a 5;0;SI;NO;LIMA TOP;SURCO;B;SURCOB
+232;Ingeniero(a) Civil;Residente de Obra;02. 6 a 10;0;SI;NO;LIMA TOP;SURCO;B;SURCOB
+233;Ingeniero(a) Civil;Jefe de Campo;01. 1 a 5;0;SI;NO;LIMA TOP;SURCO;B;SURCOB
+234;Ingeniero(a) Civil;Residente de Obra;02. 6 a 10;1 a 2;SI;NO;LIMA TOP;SURCO;B;SURCOB
+235;Ingeniero(a) Civil;Residente de Obra;03. 11 a 15;0;SI;NO;LIMA TOP;SURCO;B;SURCOB
+236;Ingeniero(a) Civil;Residente de Obra;02. 6 a 10;0;SI;NO;LIMA TOP;SURCO;B;SURCOB
+237;Ingeniero(a) Civil;Jefe de Campo;01. 1 a 5;0;SI;NO;LIMA TOP;SURCO;B;SURCOB
+238;Ingeniero(a) Civil;Jefe de Campo;02. 6 a 10;0;SI;NO;LIMA TOP;SURCO;B;SURCOB
+239;Ingeniero(a) Civil;Gerente Proyecto;04. Más de 15;0;SI;NO;LIMA TOP;SURCO;B;SURCOB
+240;Ingeniero(a) Civil;Residente de Obra;03. 11 a 15;0;SI;NO;LIMA TOP;SURCO;B;SURCOB
+241;Ingeniero(a) Civil;Residente de Obra;02. 6 a 10;0;SI;NO;LIMA MODERNA;SURQUILLO;A;SURQUILLOA
+242;Ingeniero(a) Civil;Residente de Obra;04. Más de 15;0;SI;NO;LIMA TOP;MIRAFLORES;B;MIRAFLORESB
+243;Ingeniero(a) Civil;Jefe de Campo;01. 1 a 5;0;SI;NO;LIMA TOP;MIRAFLORES;B;MIRAFLORESB
+244;Ingeniero(a) Civil;Jefe de Campo;02. 6 a 10;0;SI;NO;LIMA TOP;MIRAFLORES;B;MIRAFLORESB
+245;Ingeniero(a) Civil;Jefe de Campo;02. 6 a 10;0;SI;NO;LIMA TOP;MIRAFLORES;B;MIRAFLORESB
+246;Ingeniero(a) Civil;Jefe de Campo;02. 6 a 10;0;SI;NO;LIMA TOP;MIRAFLORES;B;MIRAFLORESB
+247;Ingeniero(a) Civil;Jefe de Campo;01. 1 a 5;0;SI;NO;LIMA TOP;MIRAFLORES;B;MIRAFLORESB
+248;Ingeniero(a) Civil;Jefe de Campo;03. 11 a 15;0;SI;NO;LIMA TOP;MIRAFLORES;B;MIRAFLORESB
+249;Ingeniero(a) Civil;Jefe de Campo;02. 6 a 10;0;SI;NO;LIMA TOP;MIRAFLORES;B;MIRAFLORESB
+250;Ingeniero(a) Civil;Jefe de Campo;01. 1 a 5;1 a 2;SI;NO;LIMA TOP;MIRAFLORES;B;MIRAFLORESB
+251;Ingeniero(a) Civil;Jefe de Campo;01. 1 a 5;0;SI;NO;LIMA TOP;MIRAFLORES;B;MIRAFLORESB
+252;Ingeniero(a) Civil;Jefe de Campo;01. 1 a 5;0;SI;NO;LIMA TOP;MIRAFLORES;B;MIRAFLORESB
+253;Ingeniero(a) Civil;Residente de Obra;02. 6 a 10;0;SI;NO;LIMA TOP;MIRAFLORES;B;MIRAFLORESB
+254;Ingeniero(a) Civil;Jefe de Campo;01. 1 a 5;0;SI;SI;LIMA TOP;MIRAFLORES;B;MIRAFLORESB
+255;Arquitecto(a);Jefe de Campo;02. 6 a 10;0;SI;NO;LIMA TOP;SAN ISIDRO;A;SAN ISIDROA
+256;Ingeniero(a) Civil;Jefe de Campo;01. 1 a 5;0;SI;NO;LIMA TOP;SAN ISIDRO;A;SAN ISIDROA
+257;Ingeniero(a) Civil;Jefe de Campo;01. 1 a 5;0;SI;NO;LIMA TOP;SAN ISIDRO;A;SAN ISIDROA
+258;Arquitecto(a);Jefe de Campo;01. 1 a 5;0;SI;NO;LIMA TOP;SAN ISIDRO;A;SAN ISIDROA
+259;Arquitecto(a);Jefe de Campo;02. 6 a 10;0;SI;NO;LIMA TOP;SAN ISIDRO;A;SAN ISIDROA
+260;Ingeniero(a) Civil;Jefe de Campo;02. 6 a 10;0;SI;NO;LIMA TOP;SAN ISIDRO;A;SAN ISIDROA
+261;Ingeniero(a) Civil;Jefe de Campo;01. 1 a 5;0;SI;NO;LIMA TOP;SAN ISIDRO;A;SAN ISIDROA
+262;Arquitecto(a);Jefe de Campo;01. 1 a 5;0;SI;NO;LIMA TOP;SAN ISIDRO;A;SAN ISIDROA
+263;Ingeniero(a) Civil;Jefe de Campo;02. 6 a 10;0;SI;NO;LIMA TOP;SAN ISIDRO;A;SAN ISIDROA
+264;Ingeniero(a) Civil;Gerente Proyecto;04. Más de 15;0;NO;NO;LIMA TOP;SAN ISIDRO;A;SAN ISIDROA
+265;Ingeniero(a) Civil;Residente de Obra;03. 11 a 15;5 a más;SI;NO;LIMA TOP;SAN ISIDRO;A;SAN ISIDROA
+266;Ingeniero(a) Civil;Jefe de Campo;02. 6 a 10;0;SI;NO;LIMA TOP;SAN ISIDRO;A;SAN ISIDROA
+267;Ingeniero(a) Civil;Residente de Obra;03. 11 a 15;0;SI;NO;LIMA TOP;SAN ISIDRO;A;SAN ISIDROA
+268;Ingeniero(a) Civil;Jefe de Campo;02. 6 a 10;0;SI;SI;LIMA MODERNA;PUEBLO LIBRE;A;PUEBLO LIBREA
+269;Ingeniero(a) Civil;Gerente Proyecto;03. 11 a 15;1 a 2;SI;NO;LIMA MODERNA;PUEBLO LIBRE;A;PUEBLO LIBREA
+270;Ingeniero(a) Civil;Residente de Obra;02. 6 a 10;0;SI;NO;LIMA MODERNA;PUEBLO LIBRE;A;PUEBLO LIBREA
+271;Ingeniero(a) Civil;Jefe de Campo;04. Más de 15;0;SI;NO;LIMA MODERNA;PUEBLO LIBRE;A;PUEBLO LIBREA
+272;Ingeniero(a) Civil;Jefe de Campo;01. 1 a 5;0;SI;NO;LIMA MODERNA;PUEBLO LIBRE;A;PUEBLO LIBREA
+273;Ingeniero(a) Civil;Gerente Proyecto;04. Más de 15;1 a 2;SI;SI;LIMA MODERNA;PUEBLO LIBRE;A;PUEBLO LIBREA
+274;Ingeniero(a) Civil;Jefe de Campo;01. 1 a 5;1 a 2;SI;SI;LIMA MODERNA;PUEBLO LIBRE;A;PUEBLO LIBREA
+275;Ingeniero(a) Civil;Jefe de Campo;02. 6 a 10;0;SI;NO;LIMA MODERNA;SAN MIGUEL;B;SAN MIGUELB
+276;Ingeniero(a) Civil;Jefe de Campo;02. 6 a 10;0;SI;NO;LIMA MODERNA;SAN MIGUEL;B;SAN MIGUELB
+277;Ingeniero(a) Civil;Residente de Obra;01. 1 a 5;0;SI;NO;LIMA MODERNA;SAN MIGUEL;B;SAN MIGUELB
+278;Ingeniero(a) Civil;Residente de Obra;02. 6 a 10;0;SI;NO;LIMA MODERNA;SAN MIGUEL;B;SAN MIGUELB
+279;Ingeniero(a) Civil;Jefe de Campo;01. 1 a 5;0;SI;NO;LIMA MODERNA;SAN MIGUEL;B;SAN MIGUELB
+280;Ingeniero(a) Civil;Residente de Obra;03. 11 a 15;3 a 4;SI;NO;LIMA MODERNA;SAN MIGUEL;B;SAN MIGUELB
+281;Ingeniero(a) Civil;Residente de Obra;04. Más de 15;0;NO;NO;LIMA CENTRO;CERCADO LIMA;A;CERCADO LIMAA
+282;Ingeniero(a) Civil;Jefe de Campo;01. 1 a 5;1 a 2;SI;SI;LIMA MODERNA;LINCE;A;LINCEA
+283;Ingeniero(a) Civil;Jefe de Campo;01. 1 a 5;0;SI;SI;LIMA CENTRO;CERCADO LIMA;A;CERCADO LIMAA
+284;Ingeniero(a) Civil;Residente de Obra;04. Más de 15;1 a 2;SI;NO;LIMA CENTRO;CERCADO LIMA;A;CERCADO LIMAA
+285;Ingeniero(a) Civil;Residente de Obra;03. 11 a 15;3 a 4;SI;SI;LIMA CENTRO;CERCADO LIMA;A;CERCADO LIMAA
+286;Ingeniero(a) Civil;Jefe de Campo;01. 1 a 5;0;SI;NO;LIMA CENTRO;CERCADO LIMA;A;CERCADO LIMAA
+287;Ingeniero(a) Civil;Jefe de Campo;01. 1 a 5;0;SI;NO;LIMA CENTRO;CERCADO LIMA;A;CERCADO LIMAA
+288;Ingeniero(a) Civil;Residente de Obra;04. Más de 15;0;SI;NO;LIMA CENTRO;BREÑA;A;BREÑAA
+289;Ingeniero(a) Civil;Residente de Obra;02. 6 a 10;0;SI;NO;LIMA CENTRO;BREÑA;A;BREÑAA
+290;Ingeniero(a) Civil;Jefe de Campo;01. 1 a 5;1 a 2;SI;SI;LIMA CENTRO;BREÑA;A;BREÑAA
+291;Ingeniero(a) Civil;Residente de Obra;02. 6 a 10;0;SI;NO;LIMA CENTRO;BREÑA;A;BREÑAA
+292;Ingeniero(a) Civil;Jefe de Campo;02. 6 a 10;0;SI;NO;LIMA CENTRO;BREÑA;A;BREÑAA
+293;Ingeniero(a) Civil;Jefe de Campo;01. 1 a 5;0;SI;NO;LIMA CENTRO;BREÑA;A;BREÑAA
+294;Ingeniero(a) Civil;Jefe de Campo;02. 6 a 10;3 a 4;SI;SI;CALLAO;CALLAO;A;CALLAOA
+295;Ingeniero(a) Civil;Jefe de Campo;01. 1 a 5;0;SI;SI;CALLAO;CALLAO;A;CALLAOA
+296;Ingeniero(a) Civil;Residente de Obra;02. 6 a 10;1 a 2;SI;SI;CALLAO;CALLAO;A;CALLAOA
+297;Arquitecto(a);Jefe de Campo;01. 1 a 5;1 a 2;SI;SI;CALLAO;CALLAO;A;CALLAOA
+298;Arquitecto(a);Jefe de Campo;01. 1 a 5;0;SI;SI;CALLAO;CALLAO;A;CALLAOA
+299;Ingeniero(a) Civil;Jefe de Oficina Técnica;01. 1 a 5;1 a 2;SI;SI;CALLAO;CALLAO;A;CALLAOA
+300;Ingeniero(a) Civil;Jefe de Campo;01. 1 a 5;1 a 2;SI;NO;CALLAO;CALLAO;A;CALLAOA
+301;Ingeniero(a) Civil;Gerente Proyecto;04. Más de 15;1 a 2;SI;SI;LIMA MODERNA;MAGDALENA;A;MAGDALENAA
+302;Arquitecto(a);Jefe de Campo;01. 1 a 5;3 a 4;SI;SI;LIMA NORTE;COMAS;A;COMASA
+303;Ingeniero(a) Civil;Residente de Obra;02. 6 a 10;0;SI;NO;LIMA ESTE;ATE;A;ATEA
+304;Ingeniero(a) Civil;Residente de Obra;02. 6 a 10;0;SI;NO;LIMA NORTE;SMP;A;SMPA
+305;Ingeniero(a) Civil;Residente de Obra;04. Más de 15;0;SI;NO;LIMA NORTE;SMP;A;SMPA
+306;Ingeniero(a) Civil;Residente de Obra;01. 1 a 5;0;SI;NO;LIMA NORTE;SMP;A;SMPA
+307;Ingeniero(a) Civil;Jefe de Campo;04. Más de 15;0;NO;NO;LIMA ESTE;EL AGUSTINO;A;EL AGUSTINOA
+308;Ingeniero(a) Civil;Residente de Obra;02. 6 a 10;0;SI;NO;LIMA ESTE;EL AGUSTINO;A;EL AGUSTINOA
+309;Ingeniero(a) Civil;Jefe de Campo;02. 6 a 10;0;NO;NO;LIMA SUR;SAN BARTOLO;A;SAN BARTOLOA
+310;Ingeniero(a) Civil;Jefe de Campo;01. 1 a 5;0;SI;NO;LIMA SUR;SAN BARTOLO;A;SAN BARTOLOA
+311;Ingeniero(a) Civil;Residente de Obra;04. Más de 15;0;SI;NO;LIMA SUR;SAN BARTOLO;A;SAN BARTOLOA
+312;Ingeniero(a) Civil;Jefe de Campo;04. Más de 15;0;SI;NO;LIMA SUR;SAN BARTOLO;A;SAN BARTOLOA
+313;Ingeniero(a) Civil;Jefe de Campo;01. 1 a 5;0;NO;NO;LIMA SUR;SAN BARTOLO;A;SAN BARTOLOA
+314;Ingeniero(a) Civil;Residente de Obra;04. Más de 15;0;SI;NO;LIMA SUR;SAN BARTOLO;A;SAN BARTOLOA
+315;Ingeniero(a) Civil;Residente de Obra;02. 6 a 10;0;SI;NO;LIMA SUR;SAN BARTOLO;A;SAN BARTOLOA
+316;Ingeniero(a) Civil;Jefe de Campo;01. 1 a 5;0;SI;NO;LIMA NORTE;LOS OLIVOS;A;LOS OLIVOSA
+317;Ingeniero(a) Civil;Residente de Obra;02. 6 a 10;0;SI;NO;LIMA NORTE;LOS OLIVOS;A;LOS OLIVOSA
+318;Ingeniero(a) Civil;Residente de Obra;01. 1 a 5;0;SI;NO;LIMA NORTE;LOS OLIVOS;A;LOS OLIVOSA
+319;Ingeniero(a) Civil;Jefe de Campo;01. 1 a 5;0;SI;NO;LIMA NORTE;LOS OLIVOS;A;LOS OLIVOSA
