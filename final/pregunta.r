@@ -36,6 +36,8 @@ library(survey)
 
 setwd("F:/muestreo")
 
+setwd("/Users/gvalderrama/Documents/muestreo/")
+
 dataset <- read.csv(file= "DATAEX.csv", header=TRUE, sep=";")
 head(dataset)
 str(dataset)
@@ -44,6 +46,7 @@ K = dim(dataset)[1]
 N = length(levels(dataset$ESTRATO))
 M = length(levels(dataset$SECTOR))
 
+levels(dataset$ESTRATO)
 levels(dataset$SECTOR)
 levels(dataset$CONG)
 levels(dataset$BIM)
