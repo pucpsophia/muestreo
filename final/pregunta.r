@@ -38,13 +38,22 @@ setwd("F:/muestreo")
 
 setwd("/Users/gvalderrama/Documents/muestreo/")
 
+setwd("/Users/gregory/Documents/pucp/muestreo/")
+
 dataset <- read.csv(file= "DATAEX.csv", header=TRUE, sep=";")
 head(dataset)
 str(dataset)
+datatable = as.data.table(dataset)
 
-K = dim(dataset)[1]
-N = length(levels(dataset$ESTRATO))
-M = length(levels(dataset$SECTOR))
+unique(dataset$DISTRITO)
+unique(dataset$CONG)
+
+
+K = dim(datatable)[1]
+NEstratos = length(levels(dataset$ESTRATO))
+NDistritos =  length(levels(dataset$DISTRITO))
+NSector =  length(levels(dataset$SECTOR))
+
 
 levels(dataset$ESTRATO)
 levels(dataset$SECTOR)
@@ -52,34 +61,34 @@ levels(dataset$CONG)
 levels(dataset$BIM)
 dim(dataset)
 
+
+
 n = 3
 
-aux1 <- sampling::cluster(dataset, clustername = c('ESTRATO'), n, description=T)
+help("runif")
 
-samplec1 <- sampling::getdata(dataset, aux1)
+help("punif")
+# check missing data 
+nads = na.omit(datatable)
+dim(datatable)
+dim(nads)
+# order by strato
+datatable <- datatable[ order ( datatable$ESTRATO ) , ]
 
-Mhat = dim(aux1)[1]
+datatable [ , nest := .N , by = 'ESTRATO']
 
-aux = data.frame(fpc = rep(N/Mhat), pw = rep(K/Mhat, Mhat))
-samplec1_final  = cbind(numc =1:Mhat, samplec1, aux)
+datatable [, Fact:=interaction(ESTRATO,DISTRITO, SECTOR)]
 
-dclus = survey::svydesign(id=~ESTRATO, fpc = ~fpc, data = samplec1_final)
+datatable[1:10, ]
 
-svytable(formula=~BIM, design = dclus)
+dataset[ , 'ESTRATO' ]
+str(dataset)
 
-svytotal(~BIM, design = dclus)
+design = svydesign(id=~1, strata = ~ESTRATO, data = datatable)
 
-svymean(~BIM, design = dclus)
+unique(datatable$fpc)
 
-
-
-
-
-
-
-
-
-
+svymean(~BIM, design)
 
 
 
