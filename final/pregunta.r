@@ -32,7 +32,11 @@ install.packages("sampling")
 install.packages("survey")
 install.packages("foreign")
 
+install.packages("NHANES")
+library(NHANES)
+data(NHANES)
 library(survey)
+library(data.table)
 
 setwd("F:/muestreo")
 
@@ -44,19 +48,47 @@ dataset <- read.csv(file= "DATAEX.csv", header=TRUE, sep=";")
 head(dataset)
 str(dataset)
 datatable = as.data.table(dataset)
+table(dataset$ESTRATO)
+table(dataset$DISTRITO)
+table(dataset$SECTOR)
 
-unique(dataset$DISTRITO)
-unique(dataset$CONG)
+
+length(table(dataset$ESTRATO))
+
+data(api)
+
+dstrat<-svydesign(id=~1,strata=~stype, weights=~pw, data=apistrat, fpc=~fpc)
+table(apistrat$stype, apistrat$pw)
+unique(apistrat$pw)
+
+## multistage sampling has no effect when fpc is not given, so
+## these are equivalent.
+dclus2wr <- svydesign(id=~dnum+snum, weights=weights(dclus2), data=apiclus2)
+dclus2wr2<-svydesign(id=~dnum, weights=weights(dclus2), data=apiclus2)
+
+table(apiclus2$stype)
+
+str(apiclus2)
 
 
+
+
+table(apistrat$stype,apistrat$fpc)
+dim(apistrat)
+
+dclus1<-svydesign(id=~dnum, weights=~pw, data=apiclus1, fpc=~fpc)
+table(apiclus1$dnum)
+dim(apiclus1)
+
+NObras = 2716
+NMuestra = 1219
 K = dim(datatable)[1]
 NEstratos = length(levels(dataset$ESTRATO))
 NDistritos =  length(levels(dataset$DISTRITO))
 NSector =  length(levels(dataset$SECTOR))
 
 
-levels(dataset$ESTRATO)
-levels(dataset$SECTOR)
+
 levels(dataset$CONG)
 levels(dataset$BIM)
 dim(dataset)
@@ -84,12 +116,11 @@ datatable[1:10, ]
 dataset[ , 'ESTRATO' ]
 str(dataset)
 
-design = svydesign(id=~1, strata = ~ESTRATO, data = datatable)
-
-unique(datatable$fpc)
+design = svydesign(id=~DISTRITO + SECTOR, strata = ~ESTRATO, data = datatable)
 
 svymean(~BIM, design)
 
+load(NHANES)
 
 
 
@@ -97,3 +128,4 @@ svymean(~BIM, design)
 
 
 
+str(NHANES)
