@@ -1,7 +1,7 @@
 NUM;Encuestado;CARGO;P3;EXP. BIM;P5;BIM;ESTRATO;DISTRITO;SECTOR;CONG
 1;Ingeniero(a) Civil;Residente de Obra;02. 6 a 10;0;SI;NO;LIMA TOP;SURCO;A;SURCOA
 2;Ingeniero(a) Civil;Residente de Obra;03. 11 a 15;0;SI;NO;LIMA TOP;SURCO;A;SURCOA
-3;Ingeniero(a) Civil;Jefe de Oficina Técnica;03. 11 a 15;1 a 2;SI;NO;LIMA CENTRO;BRENIA;A;BRENIAA
+3;Ingeniero(a) Civil;Jefe de Oficina Técnica;03. 11 a 15;1 a 2;SI;NO;LIMA CENTRO;BREÑA;A;BREÑAA
 4;Ingeniero(a) Civil;Jefe de Oficina Técnica;02. 6 a 10;1 a 2;SI;SI;LIMA TOP;SURCO;A;SURCOA
 5;Ingeniero(a) Civil;Residente de Obra;03. 11 a 15;0;SI;NO;LIMA TOP;SURCO;A;SURCOA
 6;Ingeniero(a) Civil;Residente de Obra;03. 11 a 15;1 a 2;SI;SI;LIMA TOP;SURCO;A;SURCOA
@@ -140,10 +140,10 @@ NUM;Encuestado;CARGO;P3;EXP. BIM;P5;BIM;ESTRATO;DISTRITO;SECTOR;CONG
 139;Ingeniero(a) Civil;Residente de Obra;04. Más de 15;0;NO;NO;CALLAO;VENTANILLA;A;VENTANILLAA
 140;Ingeniero(a) Civil;Residente de Obra;03. 11 a 15;0;SI;NO;LIMA MODERNA;MAGDALENA;A;MAGDALENAA
 141;Ingeniero(a) Civil;Gerente Proyecto;02. 6 a 10;1 a 2;SI;SI;LIMA NORTE;ANCON/INDEP;A;ANCON/INDEPA
-142;Ingeniero(a) Civil;Jefe de Campo;01. 1 a 5;0;SI;NO;LIMA CENTRO;BRENIA;A;BRENIAA
-143;Ingeniero(a) Civil;Jefe de Oficina Técnica;02. 6 a 10;0;SI;NO;LIMA CENTRO;BRENIA;A;BRENIAA
-144;Ingeniero(a) Civil;Residente de Obra;02. 6 a 10;0;SI;NO;LIMA CENTRO;BRENIA;A;BRENIAA
-145;Ingeniero(a) Civil;Jefe de Oficina Técnica;01. 1 a 5;0;SI;NO;LIMA CENTRO;BRENIA;A;BRENIAA
+142;Ingeniero(a) Civil;Jefe de Campo;01. 1 a 5;0;SI;NO;LIMA CENTRO;BREÑA;A;BREÑAA
+143;Ingeniero(a) Civil;Jefe de Oficina Técnica;02. 6 a 10;0;SI;NO;LIMA CENTRO;BREÑA;A;BREÑAA
+144;Ingeniero(a) Civil;Residente de Obra;02. 6 a 10;0;SI;NO;LIMA CENTRO;BREÑA;A;BREÑAA
+145;Ingeniero(a) Civil;Jefe de Oficina Técnica;01. 1 a 5;0;SI;NO;LIMA CENTRO;BREÑA;A;BREÑAA
 146;Ingeniero(a) Civil;Residente de Obra;02. 6 a 10;0;SI;NO;CALLAO;CALLAO;A;CALLAOA
 147;Ingeniero(a) Civil;Jefe de Oficina Técnica;01. 1 a 5;0;SI;NO;LIMA SUR;CHORRILLOS;C;CHORRILLOSC
 148;Ingeniero(a) Civil;Residente de Obra;04. Más de 15;5 a más;SI;SI;LIMA SUR;CHORRILLOS;C;CHORRILLOSC
@@ -286,12 +286,12 @@ NUM;Encuestado;CARGO;P3;EXP. BIM;P5;BIM;ESTRATO;DISTRITO;SECTOR;CONG
 285;Ingeniero(a) Civil;Residente de Obra;03. 11 a 15;3 a 4;SI;SI;LIMA CENTRO;CERCADO LIMA;A;CERCADO LIMAA
 286;Ingeniero(a) Civil;Jefe de Campo;01. 1 a 5;0;SI;NO;LIMA CENTRO;CERCADO LIMA;A;CERCADO LIMAA
 287;Ingeniero(a) Civil;Jefe de Campo;01. 1 a 5;0;SI;NO;LIMA CENTRO;CERCADO LIMA;A;CERCADO LIMAA
-288;Ingeniero(a) Civil;Residente de Obra;04. Más de 15;0;SI;NO;LIMA CENTRO;BRENIA;A;BRENIAA
-289;Ingeniero(a) Civil;Residente de Obra;02. 6 a 10;0;SI;NO;LIMA CENTRO;BRENIA;A;BRENIAA
-290;Ingeniero(a) Civil;Jefe de Campo;01. 1 a 5;1 a 2;SI;SI;LIMA CENTRO;BRENIA;A;BRENIAA
-291;Ingeniero(a) Civil;Residente de Obra;02. 6 a 10;0;SI;NO;LIMA CENTRO;BRENIA;A;BRENIAA
-292;Ingeniero(a) Civil;Jefe de Campo;02. 6 a 10;0;SI;NO;LIMA CENTRO;BRENIA;A;BRENIAA
-293;Ingeniero(a) Civil;Jefe de Campo;01. 1 a 5;0;SI;NO;LIMA CENTRO;BRENIA;A;BRENIAA
+288;Ingeniero(a) Civil;Residente de Obra;04. Más de 15;0;SI;NO;LIMA CENTRO;BREÑA;A;BREÑAA
+289;Ingeniero(a) Civil;Residente de Obra;02. 6 a 10;0;SI;NO;LIMA CENTRO;BREÑA;A;BREÑAA
+290;Ingeniero(a) Civil;Jefe de Campo;01. 1 a 5;1 a 2;SI;SI;LIMA CENTRO;BREÑA;A;BREÑAA
+291;Ingeniero(a) Civil;Residente de Obra;02. 6 a 10;0;SI;NO;LIMA CENTRO;BREÑA;A;BREÑAA
+292;Ingeniero(a) Civil;Jefe de Campo;02. 6 a 10;0;SI;NO;LIMA CENTRO;BREÑA;A;BREÑAA
+293;Ingeniero(a) Civil;Jefe de Campo;01. 1 a 5;0;SI;NO;LIMA CENTRO;BREÑA;A;BREÑAA
 294;Ingeniero(a) Civil;Jefe de Campo;02. 6 a 10;3 a 4;SI;SI;CALLAO;CALLAO;A;CALLAOA
 295;Ingeniero(a) Civil;Jefe de Campo;01. 1 a 5;0;SI;SI;CALLAO;CALLAO;A;CALLAOA
 296;Ingeniero(a) Civil;Residente de Obra;02. 6 a 10;1 a 2;SI;SI;CALLAO;CALLAO;A;CALLAOA
