@@ -47,9 +47,18 @@ str(dataset)
 
 levels(dataset$ESTRATO)
 levels(dataset$DISTRITO)
+levels(dataset$SECTOR)
+
+
 
 datatable = as.data.table(dataset)
 datatable <- datatable[ order ( datatable$ESTRATO ) , ]
+
+
+table(datatable$ESTRATO)
+table(datatable$DISTRITO)
+table(datatable$SECTOR)
+
 
 datatable [ , NESTRATO := 0]
 datatable [ , NDISTRITO := 0]
@@ -63,6 +72,8 @@ dim(datatable)
 dim(nads)
 
 
+
+# ================ TOTAL DE OBRAS POR ESTRATO =============================
 
 NESTRATO_LIMA_TOP <- 423  # total obras por estrato
 NESTRATO_LIMA_MODERNA <- 360  # total obras por estrato
@@ -79,6 +90,8 @@ datatable[which(datatable$ESTRATO == "LIMA NORTE", arr.ind=T), "NESTRATO" ] = NE
 datatable[which(datatable$ESTRATO == "LIMA SUR", arr.ind=T), "NESTRATO" ] = NESTRATO_LIMA_SUR
 datatable[which(datatable$ESTRATO == "CALLAO", arr.ind=T), "NESTRATO" ] = NESTRATO_CALLAO
 
+
+# ================ TOTAL DE OBRAS POR DISTRITO =============================
 
 # DISTRITO LIMA TOP
 datatable[which(datatable$ESTRATO == "LIMA TOP" & datatable$DISTRITO == "MIRAFLORES"), "NDISTRITO" ] = 133
@@ -141,7 +154,8 @@ datatable[which(datatable$ESTRATO == "CALLAO" & datatable$DISTRITO == "CALLAO"),
 # La perla
 datatable[which(datatable$ESTRATO == "CALLAO" & datatable$DISTRITO == "VENTANILLA"), "NDISTRITO" ] = 2
 
-# sector information 
+
+# ================ TOTAL DE OBRAS POR SECTOR =============================
 
 
 # DISTRITO LIMA TOP
@@ -257,12 +271,6 @@ table(datatable$NESTRATO)
 table(datatable$NDISTRITO)
 table(datatable$NSECTOR)
 
-table(datatable$ESTRATO)
-table(datatable$DISTRITO)
-table(datatable$SECTOR)
-
-
-
 
 
 alpha = 0.05
@@ -275,10 +283,6 @@ e = 0.05
 
 
 NTotal_Estrato = sum(NESTRATO_LIMA_TOP, NESTRATO_LIMA_MODERNA, NESTRATO_LIMA_CENTRO, NESTRATO_LIMA_ESTE, NESTRATO_LIMA_NORTE, NESTRATO_LIMA_SUR, NESTRATO_CALLAO)
-
-w3 = (datatable$NESTRATO / NTotal_Estrato)
-w2 = (datatable$DISTRITO / NTotal_Estrato)
-
 
 datatable [ , FPC := NESTRATO ]
 datatable [ , FPC2 := NDISTRITO ]
@@ -322,3 +326,25 @@ datatable
 datatable [ , nest := .N , by = 'ESTRATO']
 
 datatable [, Fact:=interaction(ESTRATO,DISTRITO, SECTOR)]
+
+
+
+data(api)
+apipop[1:2,]
+dim(apipop)[1] # 6194
+
+apistrat[1:2, ]
+sum(unique(apistrat$fpc)) # 4421 1018 755 = 6194
+table(apistrat$stype) # 200
+dim(apistrat)[1] # 200
+head(apistrat)
+
+unique(apiclus1$fpc) # 757
+dim(apiclus1)[1] # 183
+apiclus1$dnum
+head(apiclus1)
+
+dim(apiclus2) # 126
+unique(apiclus2$fpc1) # 757
+table(apiclus2$fpc2) # 
+
