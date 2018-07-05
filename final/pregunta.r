@@ -420,20 +420,24 @@ for (sector in DIS_SECTOR) {
   i = i + 1
 }
 
+
+
+
+
+
 PIK <- inclusionprobabilities(TAM_SECTOR, 4)
 PIK2 = UPsystematicpi2(PIK)
-
 ppt_obras =data.frame(DIS_SECTOR, TAM_SECTOR, BIM_SI_SECTOR, BIM_NO_SECTOR,  PROP_SECTOR, PIK)
 
 index = UPrandomsystematic(PIK)
+index = UPsampford(PIK)
 ppt_obras_sample = getdata(ppt_obras, index)
 
-bim_result = HTestimator(ppt_obras_sample[,"PROP_SECTOR"], ppt_obras_sample[,"PIK"]) / 14
+bim_result = HTestimator(ppt_obras_sample[,"BIM_SI_SECTOR"], ppt_obras_sample[,"PIK"]) 
 
 pik2_index = PIK2[as.logical(index), as.logical(index)]
-
 # stimated error sqrt of variance
-sta =  sqrt(varHT(ppt_obras_sample[,"PROP_SECTOR"] , pik2_index, 1))
+sta =  sqrt(varHT(ppt_obras_sample[,"BIM_SI_SECTOR"] , pik2_index, 2))
 
 e <- 0.05
 alpha = 0.05
