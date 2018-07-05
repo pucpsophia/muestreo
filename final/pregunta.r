@@ -14,11 +14,11 @@
   # BIM, reportando su intervalo de confianza al 95%. (2.0 puntos)
   # b) Halle la estimacion de la proporcion del numero de obras de construccion en Lima Top que hacen uso de
   # la metodologia BIM, junto con su error estandar de estimacion estimado. (1.0 punto)
-  # c) Suponga que en lugar de haberse empleado este dise~no para Lima Top, usted hubiese empleado un
-  # muestreo ppt de 4 sectores, para luego, encuestar a todas las obras de los sectores de Lima Top seleccionados.
+  # c) Suponga que en lugar de haberse empleado este diseno para Lima Top, usted hubiese empleado un
+  # muestreo ppt de 4 distrito sectores, para luego, encuestar a todas las obras de los sectores de Lima Top seleccionados.
   # Implemente este dise~no, reportando la proporcion del numero de obras de construccion en Lima Top que
   # hacen uso de la metodologia BIM, junto con su error estandar de estimacion estimado. Compare finalmente
-  # los errores de estimacion de este dise~no con los del anteriormente tomado.
+  # los errores de estimacion de este diseno con los del anteriormente tomado.
 # NOTA: Una vez que seleccione el sector, use la estimacion de DATAEX tomada para este sector a fin de
 # imputar su proporcion del uso del BIM. En caso que el sector no halla sido seleccionado en DATAEX (es
 # decir, cuando vea que el numero de obras encuestadas es 0), impute esta proporcion simulando ella de una
@@ -292,15 +292,6 @@ datatable [ , WEIGHT := (WEIGHT_I * WEIGHT_J_I * WEIGHT_K_J_I)]
 # order by strato
 
 
-datatable [ , nest := .N , by = 'ESTRATO']
-
-datatable [, Fact:=interaction(ESTRATO,DISTRITO, SECTOR)]
-
-datatable[1:10, ]
-
-dataset[ , 'ESTRATO' ]
-str(dataset)
-
 design = svydesign(id=~DISTRITO + SECTOR, fpc = ~FPC + FPC2 , strata = ~ESTRATO, data = datatable, weights = ~WEIGHT)
 
 design
@@ -325,3 +316,9 @@ top_design = svydesign(id=~DISTRITO + SECTOR, fpc = ~FPC + FPC2 , data = top_sam
 top_mean = svymean(~BIM, design = top_design, deff = T)
 confint(top_mean)
 
+# part c 
+
+datatable
+datatable [ , nest := .N , by = 'ESTRATO']
+
+datatable [, Fact:=interaction(ESTRATO,DISTRITO, SECTOR)]
