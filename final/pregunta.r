@@ -15,14 +15,14 @@
   # b) Halle la estimacion de la proporcion del numero de obras de construccion en Lima Top que hacen uso de
   # la metodologia BIM, junto con su error estandar de estimacion estimado. (1.0 punto)
   # c) Suponga que en lugar de haberse empleado este diseno para Lima Top, usted hubiese empleado un
-  # muestreo ppt de 4 distrito sectores, para luego, encuestar a todas las obras de los sectores de Lima Top seleccionados.
-  # Implemente este dise~no, reportando la proporcion del numero de obras de construccion en Lima Top que
+  # muestreo ppt de 4 distrito sectores, para luego, encuestar a todas las obras de los sectores (A, B, C) de Lima Top seleccionados.
+  # Implemente este diseno, reportando la proporcion del numero de obras de construccion en Lima Top que
   # hacen uso de la metodologia BIM, junto con su error estandar de estimacion estimado. Compare finalmente
   # los errores de estimacion de este diseno con los del anteriormente tomado.
-# NOTA: Una vez que seleccione el sector, use la estimacion de DATAEX tomada para este sector a fin de
+# NOTA: Una vez que seleccione el distrito sector, use la estimacion de DATAEX tomada para este sector a fin de
 # imputar su proporcion del uso del BIM. En caso que el sector no halla sido seleccionado en DATAEX (es
 # decir, cuando vea que el numero de obras encuestadas es 0), impute esta proporcion simulando ella de una
-# distribucion Beta de parametros ?? = 2 y ?? = 8. (2.0 puntos)
+# distribucion Beta de parametros alpha = 2 y beta = 8. (2.0 puntos)
 
 install.packages("data.table")
 install.packages("sampling")
@@ -322,12 +322,150 @@ confint(top_mean)
 
 # part c 
 
-datatable
+datatable[ 1, "CONG"]
 datatable [ , nest := .N , by = 'ESTRATO']
 
 datatable [, Fact:=interaction(ESTRATO,DISTRITO, SECTOR)]
 
+datatable[ which(datatable$ESTRATO == "LIMA TOP"), "CONG" ] 
 
+# -------------------------    part c 
+
+
+ppt_sample  = datatable[ which(datatable$ESTRATO == "LIMA TOP"), c("NUM","BIM","ESTRATO", "DISTRITO", "SECTOR", "CONG", "NDISTRITO", "NSECTOR") ] 
+
+ppt_sample [ , imputation := 0 ]
+
+# imputation miraflores c 133 obras en el distrito, 23 obras en sector C
+
+n_distrito_sector = 23
+prop <- rbeta(1, 2, 8)
+prop_yes <- ceiling(n_distrito_sector * prop)
+prop_no <- n_distrito_sector - prop_yes
+for (index in rep(1,prop_yes)) {
+  ppt_sample = rbind(ppt_sample, list( nrow(ppt_sample) + 1, "SI", "LIMA TOP", "MIRAFLORES", "C", "MIRAFLORESC", 133, n_distrito_sector, 1 ) )        
+}
+for (index in rep(1,prop_no)) {
+  ppt_sample = rbind(ppt_sample, list( nrow(ppt_sample) + 1, "NO", "LIMA TOP", "MIRAFLORES", "C", "MIRAFLORESC", 133, n_distrito_sector, 1 ) )        
+}
+
+# imputation molina A 9 obras en el distrito, 6 obras en sector A
+n_distrito_sector = 6
+prop <- rbeta(1, 2, 8)
+prop_yes <- ceiling(n_distrito_sector * prop)
+prop_no <- n_distrito_sector - prop_yes
+for (index in rep(1,prop_yes)) {
+  ppt_sample = rbind(ppt_sample, list( nrow(ppt_sample) + 1, "SI", "LIMA TOP", "MOLINA", "A", "MOLINAA", 9, n_distrito_sector, 1 ) )        
+}
+for (index in rep(1,prop_no)) {
+  ppt_sample = rbind(ppt_sample, list( nrow(ppt_sample) + 1, "NO", "LIMA TOP", "MOLINA", "A", "MOLINAA", 9, n_distrito_sector, 1 ) )        
+}
+
+# imputation molina B 9 obras en el distrito, 2 obras en sector B
+n_distrito_sector = 2
+prop <- rbeta(1, 2, 8)
+prop_yes <- ceiling(n_distrito_sector * prop)
+prop_no <- n_distrito_sector - prop_yes
+for (index in rep(1,prop_yes)) {
+  ppt_sample = rbind(ppt_sample, list( nrow(ppt_sample) + 1, "SI", "LIMA TOP", "MOLINA", "B", "MOLINAB", 9, n_distrito_sector, 1 ) )        
+}
+for (index in rep(1,prop_no)) {
+  ppt_sample = rbind(ppt_sample, list( nrow(ppt_sample) + 1, "NO", "LIMA TOP", "MOLINA", "B", "MOLINAB", 9, n_distrito_sector, 1 ) )        
+}
+
+# imputation santiago de surco C 136 obras en el distrito, 20 obras en sector C
+n_distrito_sector = 20
+prop <- rbeta(1, 2, 8)
+prop_yes <- ceiling(n_distrito_sector * prop)
+prop_no <- n_distrito_sector - prop_yes
+for (index in rep(1,prop_yes)) {
+  ppt_sample = rbind(ppt_sample, list( nrow(ppt_sample) + 1, "SI", "LIMA TOP", "SURCO", "C", "SURCOC", 136, n_distrito_sector, 1 ) )        
+}
+for (index in rep(1,prop_no)) {
+  ppt_sample = rbind(ppt_sample, list( nrow(ppt_sample) + 1, "NO", "LIMA TOP", "SURCO", "C", "SURCOC", 136, n_distrito_sector, 1 ) )        
+}
+
+# imputation san borja C 53 obras en el distrito, 1 obras en sector C
+n_distrito_sector = 1
+prop <- rbeta(1, 2, 8)
+prop_yes <- ceiling(n_distrito_sector * prop)
+prop_no <- n_distrito_sector - prop_yes
+for (index in rep(1,prop_yes)) {
+  ppt_sample = rbind(ppt_sample, list( nrow(ppt_sample) + 1, "SI", "LIMA TOP", "SAN BORJA", "C", "SAN BORJAC", 53, n_distrito_sector, 1 ) )        
+}
+for (index in rep(1,prop_no)) {
+  ppt_sample = rbind(ppt_sample, list( nrow(ppt_sample) + 1, "NO", "LIMA TOP", "SAN BORJA", "C", "SAN BORJAC", 53, n_distrito_sector, 1 ) )        
+}
+
+ppt_sample$CONG = factor(ppt_sample$CONG)
+
+ppt_sample <- ppt_sample[order( ppt_sample$CONG ) , ]
+
+data.frame(table(ppt_sample$CONG))[ ,2 ]
+
+# MirafloresA, MirafloresB, MirafloresC, SanIsidroA, SanIsidroB, LaMolinaA, LaMolinaB, SantiagodeSurcoA, SantiagodeSurcoB, SantiagodeSurcoC, SanBorjaA, SanBorjaB, SanBorjaC, Barranco**(AyB)A
+
+
+DIS_SECTOR = sort(sapply(unique(ppt_sample$CONG), as.character))
+TAM_SECTOR = vector(length = length(DIS_SECTOR))
+BIM_SI_SECTOR = vector(length = length(DIS_SECTOR))
+BIM_NO_SECTOR = vector(length = length(DIS_SECTOR))
+PROP_SECTOR = vector(length = length(DIS_SECTOR))
+i = 1
+for (sector in DIS_SECTOR) {
+  TAM_SECTOR[i] = dim(ppt_sample[ which(ppt_sample$CONG == sector), ])[1]
+  BIM_SI_SECTOR[i] = dim(ppt_sample[ which(ppt_sample$CONG == sector & ppt_sample$BIM == "SI"), ])[1]  
+  BIM_NO_SECTOR[i] = dim(ppt_sample[ which(ppt_sample$CONG == sector & ppt_sample$BIM == "NO"), ])[1]
+  PROP_SECTOR[i] =   BIM_SI_SECTOR[i]  / (BIM_SI_SECTOR[i] + BIM_NO_SECTOR[i]) # calculate proportions
+  i = i + 1
+}
+
+PIK <- inclusionprobabilities(TAM_SECTOR, 4)
+PIK2 = UPsystematicpi2(PIK)
+
+ppt_obras =data.frame(DIS_SECTOR, TAM_SECTOR, BIM_SI_SECTOR, BIM_NO_SECTOR,  PROP_SECTOR, PIK)
+
+index = UPrandomsystematic(PIK)
+ppt_obras_sample = getdata(ppt_obras, index)
+
+bim_result = HTestimator(ppt_obras_sample[,"PROP_SECTOR"], ppt_obras_sample[,"PIK"]) / 14
+
+pik2_index = PIK2[as.logical(index), as.logical(index)]
+
+# stimated error sqrt of variance
+sta =  sqrt(varHT(ppt_obras_sample[,"PROP_SECTOR"] , pik2_index, 1))
+
+e <- 0.05
+alpha = 0.05
+z <- qnorm ( 1 - alpha / 2 )
+
+c(bim_result - z * sqrt( bim_result * (1 - bim_result) / 4 ), bim_result + z * sqrt(bim_result * (1-bim_result) / 4 ))
+
+
+
+
+
+
+
+
+
+
+
+
+  
+sum(subset(data.frame(table(ppt_sample$CONG)), Freq > 0)[ ,2 ])
+
+droplevels(ppt_sample, exclude = if(anyNA(levels(ppt_sample)))
+
+ppt_sample [ , fpc := .N , by = Estrato]
+
+
+
+
+dim(ppt_sample)
+head(ppt_sample)
+
+mstage(datatable, stage = list("cluster", "cluster"), varnames = list("DISTRITO", "SECTOR"), size = list())
 
 data(api)
 apipop[1:2,]
@@ -348,3 +486,5 @@ dim(apiclus2) # 126
 unique(apiclus2$fpc1) # 757
 table(apiclus2$fpc2) # 
 
+rbeta(1, 2, 8)
+runif(2)

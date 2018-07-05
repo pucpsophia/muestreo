@@ -51,7 +51,7 @@ pik2
 
 index
 sample = getdata(y, index)
-prob = getdata(pki, index)
+prob = getdata(pik, index)
 total = HTestimator(sample[,2], prob[,2])
 pik2_index = pik2[as.logical(index), as.logical(index)]
 
