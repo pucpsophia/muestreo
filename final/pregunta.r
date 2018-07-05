@@ -42,9 +42,6 @@ setwd("/Users/gregory/Documents/pucp/muestreo/")
 
 dataset <- read.csv(file= "DATAEX.csv", header=TRUE, sep=";")
 
-alpha = 0.05
-e = 0.05
-
 head(dataset)
 str(dataset)
 
@@ -60,8 +57,10 @@ datatable [ , NSECTOR := 0]
 
 str(datatable)
 
-
-# completar marco muestral 
+# check missing data 
+nads = na.omit(datatable)
+dim(datatable)
+dim(nads)
 
 
 
@@ -263,45 +262,33 @@ table(datatable$DISTRITO)
 table(datatable$SECTOR)
 
 
-datatable [ , WEIGHT := NDISTRITO]
-
-unique(datatable$WEIGHT)
-
-length(table(dataset$ESTRATO))
 
 
 
-table(apistrat$stype,apistrat$fpc)
-dim(apistrat)
-
-dclus1<-svydesign(id=~dnum, weights=~pw, data=apiclus1, fpc=~fpc)
-table(apiclus1$dnum)
-dim(apiclus1)
-
-NObras = 2716
-NMuestra = 1219
-K = dim(datatable)[1]
-NEstratos = length(levels(dataset$ESTRATO))
-NDistritos =  length(levels(dataset$DISTRITO))
-NSector =  length(levels(dataset$SECTOR))
+alpha = 0.05
+e = 0.05
 
 
-
-levels(dataset$CONG)
-levels(dataset$BIM)
-dim(dataset)
-
+# W1 probabilidad de selecionar el estrato
+# W2 probabilidad de seleccionar el distrito dato que selecionamos el estrato
+# w3 probabilidad de seleccionar el sector dado que seleccionamos el distrito y el estrato
 
 
-n = 3
+NTotal_Estrato = sum(NESTRATO_LIMA_TOP, NESTRATO_LIMA_MODERNA, NESTRATO_LIMA_CENTRO, NESTRATO_LIMA_ESTE, NESTRATO_LIMA_NORTE, NESTRATO_LIMA_SUR, NESTRATO_CALLAO)
 
-help("runif")
+w3 = (datatable$NESTRATO / NTotal_Estrato)
+w2 = (datatable$DISTRITO / NTotal_Estrato)
 
-help("punif")
-# check missing data 
-nads = na.omit(datatable)
-dim(datatable)
-dim(nads)
+
+datatable [ , FPC := NESTRATO ]
+datatable [ , FPC2 := NDISTRITO ]
+
+datatable [ , WEIGHT_I := 1 / (NESTRATO / NTotal_Estrato) ]
+datatable [ , WEIGHT_J_I := 1 / (NDISTRITO / NESTRATO) ]
+datatable [ , WEIGHT_K_J_I := 1 / (NSECTOR / NDISTRITO) ]
+datatable [ , WEIGHT := (WEIGHT_I * WEIGHT_J_I * WEIGHT_K_J_I)]
+
+
 # order by strato
 
 
@@ -314,16 +301,27 @@ datatable[1:10, ]
 dataset[ , 'ESTRATO' ]
 str(dataset)
 
-design = svydesign(id=~DISTRITO + SECTOR, strata = ~ESTRATO, data = datatable)
+design = svydesign(id=~DISTRITO + SECTOR, fpc = ~FPC + FPC2 , strata = ~ESTRATO, data = datatable, weights = ~WEIGHT)
 
-svymean(~BIM, design)
+design
 
-load(NHANES)
+# estaimacion por metodo tradicional linealizacion
+options(survey.lonely.psu = "adjust")
+options(survey.lonely.psu = "certainty")
+mean = svymean(~BIM, design = design, deff = T)
+confint(mean)
 
 
+# estyimacion BRR 
+jkn = as.svrepdesign(design=design, type="JKn")
+svymean(~BIM, design = jkn, deff = T)
+# bootstrap 
+boot = as.svrepdesign(design=design, type="subbootstrap")
+svymean(~BIM, design = boot, deff = T)
 
 
+top_sample = datatable[which(datatable$ESTRATO == "LIMA TOP" ),  ] 
+top_design = svydesign(id=~DISTRITO + SECTOR, fpc = ~FPC + FPC2 , data = top_sample, weights = ~WEIGHT)
+top_mean = svymean(~BIM, design = top_design, deff = T)
+confint(top_mean)
 
-
-
-str(NHANES)
