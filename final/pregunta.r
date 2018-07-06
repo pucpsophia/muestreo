@@ -360,14 +360,12 @@ bim_result
 
 pik_2 =  probs[[2]][as.logical(index), as.logical(index)]
 diag(pik_2) = ppt_obras_pik 
-sta =  sqrt(varHT(ppt_obras_sample[,"PROP_SECTOR"] , pik_2, 1)) / 14
+sta =  sqrt(varHT(ppt_obras_sample[,"PROP_SECTOR"] , pik_2)) / 14
 
-
-e <- 0.05
 alpha = 0.05
 z <- qnorm ( 1 - alpha / 2 )
 
-c(bim_result - z * sqrt( bim_result * (1 - bim_result) / 4 ), bim_result + z * sqrt(bim_result * (1-bim_result) / 4 ))
+c(bim_result - z * sta, bim_result + sta)
 
 
 
