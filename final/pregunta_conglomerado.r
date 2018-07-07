@@ -57,6 +57,39 @@ table(datatable$ESTRATO)
 table(datatable$DISTRITO)
 table(datatable$SECTOR)
 
+fpc1 = 14 # total de obras en lima top  
+fpc2 = # numero de obras SECTOR
+
+weights = 
+  
+ids=~CONG+NUM
+
+
+Parte A  
+
+
+Stratificado - Conglomerado Bietapico
+
+Strata = ESTRATO 
+ids=~CONG+NUM
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+ids=~CONG+NUM, strata=ESTRATO 
+
+head(datatable)
+str(datatable)
 datatable [ , NESTRATO := 0]
 datatable [ , NDISTRITO := 0]
 datatable [ , NSECTOR := 0]
@@ -200,6 +233,65 @@ datatable[which(datatable$ESTRATO == "CALLAO" & datatable$DISTRITO == "CALLAO" &
 datatable[which(datatable$ESTRATO == "CALLAO" & datatable$DISTRITO == "VENTANILLA" & datatable$SECTOR == "A" ), "NSECTOR" ] = 2
 # La perla
 
+#  Valores conglomerados por la variables CONG
+datatable[which(datatable$ESTRATO == "LIMA TOP" & datatable$SECTOR == "A" ), "NCONG" ] =  208
+datatable[which(datatable$ESTRATO == "LIMA TOP" & datatable$SECTOR == "B" ), "NCONG" ] =  172
+datatable[which(datatable$ESTRATO == "LIMA TOP" & datatable$SECTOR == "C" ), "NCONG" ] =  44
+
+datatable[which(datatable$ESTRATO == "LIMA MODERNA" & datatable$SECTOR == "A" ), "NCONG" ] =  173
+datatable[which(datatable$ESTRATO == "LIMA MODERNA" & datatable$SECTOR == "B" ), "NCONG" ] =  66
+datatable[which(datatable$ESTRATO == "LIMA MODERNA" & datatable$SECTOR == "C" ), "NCONG" ] =  121
+
+datatable[which(datatable$ESTRATO == "LIMA CENTRO" & datatable$SECTOR == "A" ), "NCONG" ] =  77
+datatable[which(datatable$ESTRATO == "LIMA CENTRO" & datatable$SECTOR == "B" ), "NCONG" ] =  14
+datatable[which(datatable$ESTRATO == "LIMA CENTRO" & datatable$SECTOR == "C" ), "NCONG" ] =  6
+
+datatable[which(datatable$ESTRATO == "LIMA ESTE" & datatable$SECTOR == "A" ), "NCONG" ] =  75
+datatable[which(datatable$ESTRATO == "LIMA NORTE" & datatable$SECTOR == "A" ), "NCONG" ] =  89
+datatable[which(datatable$ESTRATO == "LIMA NORTE" & datatable$SECTOR == "B" ), "NCONG" ] =  44
+datatable[which(datatable$ESTRATO == "LIMA NORTE" & datatable$SECTOR == "C" ), "NCONG" ] =  3
+
+datatable[which(datatable$ESTRATO == "LIMA SUR" & datatable$SECTOR == "A" ), "NCONG" ] =  64
+datatable[which(datatable$ESTRATO == "LIMA SUR" & datatable$SECTOR == "C" ), "NCONG" ] =  30
+
+datatable[which(datatable$ESTRATO == "CALLAO" & datatable$SECTOR == "A" ), "NCONG" ] =  32
+
+head(datatable)
+# Validation 
+unique(datatable[which(datatable$ESTRATO == "LIMA TOP" ), "NCONG" ])  # 208, 172
+
+datatable_con = datatable
+datatable_con [ , FPC := NESTRATO ] # numero de obras por estrato
+datatable_con [ , FPC2 := NCONG ] # numero de obras por distrito estrato
+
+
+datatable [ , WEIGHT_I := 1 / (NESTRATO / NTotal_Estrato) ]
+datatable [ , WEIGHT_J_I := 1 / (NDISTRITO / NESTRATO) ]
+datatable [ , WEIGHT := (WEIGHT_I * WEIGHT_J_I)]
+
+
+con_design = svydesign(id=~CONG, strato=~ESTRATO, fpc = ~FPC2 , data = datatable_con)
+mean = svymean(~BIM, con_design )
+
+# PART B 
+
+svyby(formula = ~BIM,by = ~ESTRATO, design = con_design, FUN = svymean)
+
+# ASUMIENDO MODELO COMPLEJO dos etapas 
+
+
+datatable [ , FPC := NESTRATO ]
+datatable [ , FPC2 := NCONG ]
+
+datatable [ , WEIGHT_I := 1 / (NESTRATO / NTotal_Estrato) ]
+datatable [ , WEIGHT_J_I := 1 / (NSECTOR / NCONG ) ]
+datatable [ , WEIGHT := (WEIGHT_I * WEIGHT_J_I)]
+
+# order by strato
+design = svydesign(id=~CONG , fpc=~FPC2, strata = ~ESTRATO, data = datatable, weights = ~WEIGHT)
+svymean(~BIM, design)
+
+
 # asumiendo modelo complejo tres etapas
 
 table(datatable$NESTRATO)
@@ -214,7 +306,7 @@ NTotal_Estrato = sum(NESTRATO_LIMA_TOP, NESTRATO_LIMA_MODERNA, NESTRATO_LIMA_CEN
                      NESTRATO_LIMA_NORTE, NESTRATO_LIMA_SUR, NESTRATO_CALLAO)
 
 datatable [ , FPC := NESTRATO ]
-datatable [ , FPC2 := NDISTRITO ]
+datatable [ , FPC2 := NCONG ]
 
 datatable [ , WEIGHT_I := 1 / (NESTRATO / NTotal_Estrato) ]
 datatable [ , WEIGHT_J_I := 1 / (NDISTRITO / NESTRATO) ]
@@ -224,7 +316,6 @@ datatable [ , WEIGHT := (WEIGHT_I * WEIGHT_J_I * WEIGHT_K_J_I)]
 # order by strato
 design = svydesign(id=~DISTRITO + SECTOR, fpc = ~FPC + FPC2 , strata = ~ESTRATO, data = datatable, weights = ~WEIGHT)
 design
-
 # estaimacion por metodo tradicional linealizacion
 options(survey.lonely.psu = "adjust")
 mean = svymean(~BIM, design = design, deff = T)

@@ -10,15 +10,15 @@
 # cada sector un MASs de obras. La data del muestreo y el marco muestral (estimado por datos de Capeco)
 # se encuentra en la intranet bajo el nombre de DATAEX. La variable principal de investigacion aqui es BIM,
 # que indica si la obra encuestada hace o no uso de esta metodologia. Se pide entonces lo siguiente:
-  # a) Estime la proporcion de obras de construccion en Lima Metropolitana que hacen uso de la metodologia
-  # BIM, reportando su intervalo de confianza al 95%. (2.0 puntos)
-  # b) Halle la estimacion de la proporcion del numero de obras de construccion en Lima Top que hacen uso de
-  # la metodologia BIM, junto con su error estandar de estimacion estimado. (1.0 punto)
-  # c) Suponga que en lugar de haberse empleado este diseno para Lima Top, usted hubiese empleado un
-  # muestreo ppt de 4 distrito sectores, para luego, encuestar a todas las obras de los sectores (A, B, C) de Lima Top seleccionados.
-  # Implemente este diseno, reportando la proporcion del numero de obras de construccion en Lima Top que
-  # hacen uso de la metodologia BIM, junto con su error estandar de estimacion estimado. Compare finalmente
-  # los errores de estimacion de este diseno con los del anteriormente tomado.
+# a) Estime la proporcion de obras de construccion en Lima Metropolitana que hacen uso de la metodologia
+# BIM, reportando su intervalo de confianza al 95%. (2.0 puntos)
+# b) Halle la estimacion de la proporcion del numero de obras de construccion en Lima Top que hacen uso de
+# la metodologia BIM, junto con su error estandar de estimacion estimado. (1.0 punto)
+# c) Suponga que en lugar de haberse empleado este diseno para Lima Top, usted hubiese empleado un
+# muestreo ppt de 4 distrito sectores, para luego, encuestar a todas las obras de los sectores (A, B, C) de Lima Top seleccionados.
+# Implemente este diseno, reportando la proporcion del numero de obras de construccion en Lima Top que
+# hacen uso de la metodologia BIM, junto con su error estandar de estimacion estimado. Compare finalmente
+# los errores de estimacion de este diseno con los del anteriormente tomado.
 # NOTA: Una vez que seleccione el distrito sector, use la estimacion de DATAEX tomada para este sector a fin de
 # imputar su proporcion del uso del BIM. En caso que el sector no halla sido seleccionado en DATAEX (es
 # decir, cuando vea que el numero de obras encuestadas es 0), impute esta proporcion simulando ella de una
@@ -213,16 +213,27 @@ table(datatable$NSECTOR)
 NTotal_Estrato = sum(NESTRATO_LIMA_TOP, NESTRATO_LIMA_MODERNA, NESTRATO_LIMA_CENTRO, NESTRATO_LIMA_ESTE,
                      NESTRATO_LIMA_NORTE, NESTRATO_LIMA_SUR, NESTRATO_CALLAO)
 
-datatable [ , FPC := NESTRATO ]
-datatable [ , FPC2 := NDISTRITO ]
 
-datatable [ , WEIGHT_I := 1 / (NESTRATO / NTotal_Estrato) ]
-datatable [ , WEIGHT_J_I := 1 / (NDISTRITO / NESTRATO) ]
-datatable [ , WEIGHT_K_J_I := 1 / (NSECTOR / NDISTRITO) ]
-datatable [ , WEIGHT := (WEIGHT_I * WEIGHT_J_I * WEIGHT_K_J_I)]
+datatable[which(datatable$ESTRATO == "LIMA TOP" ), "NCONG" ] = 14
+datatable[which(datatable$ESTRATO == "LIMA MODERNA" ), "NCONG" ] = 15
+datatable[which(datatable$ESTRATO == "LIMA CENTRO" ), "NCONG" ] = 7
+datatable[which(datatable$ESTRATO == "LIMA ESTE" ), "NCONG" ] = 7
+datatable[which(datatable$ESTRATO == "LIMA NORTE" ), "NCONG" ] = 8
+datatable[which(datatable$ESTRATO == "LIMA SUR" ), "NCONG" ] = 8
+datatable[which(datatable$ESTRATO == "CALLAO" ), "NCONG" ] = 4
+
+datatable [ , FPC := NCONG ]
+datatable [ , FPC2 := NSECTOR ]
+
+datatable [ , WEIGHT_I := 1 / (NESTRATO / NTotal_Estrato) ] 
+datatable [ , WEIGHT_J_I := 1 / (NCONG / NESTRATO) ]
+datatable [ , WEIGHT_K_J_I := 1 / (NSECTOR / NCONG) ]
+datatable [ , WEIGHT := ( WEIGHT_J_I * WEIGHT_K_J_I)]
+
+
 
 # order by strato
-design = svydesign(id=~DISTRITO + SECTOR, fpc = ~FPC + FPC2 , strata = ~ESTRATO, data = datatable, weights = ~WEIGHT)
+design = svydesign(id=~CONG + NUM, fpc = ~FPC + FPC2 , strata = ~ESTRATO, data = datatable)
 design
 
 # estaimacion por metodo tradicional linealizacion
@@ -239,13 +250,12 @@ svymean(~BIM, design = boot, deff = T)
 # PART B 
 
 top_sample = datatable[which(datatable$ESTRATO == "LIMA TOP" ),  ] 
-top_design = svydesign(id=~DISTRITO + SECTOR, fpc = ~FPC + FPC2 , data = top_sample, weights = ~WEIGHT)
+top_design = svydesign(id=~~CONG + NUM, fpc = ~FPC + FPC2 , data = top_sample)
 top_mean = svymean(~BIM, design = top_design, deff = T)
 top_mean
 confint(top_mean)
 
 # ---    part c 
-
 ppt_sample  = datatable[ which(datatable$ESTRATO == "LIMA TOP"), c("NUM","BIM","ESTRATO", "DISTRITO", "SECTOR", "CONG", "NDISTRITO", "NSECTOR") ] 
 ppt_sample [ , imputation := 0 ]
 # imputation miraflores c 133 obras en el distrito, 23 obras en sector C
@@ -354,6 +364,8 @@ pisppt <- function(X,n) {
   list(pi1,pi2)
 }
 
+# inclusionprobabilities(as.numeric( TAM_SECTOR ),4)
+
 ppt_obras =data.frame(DIS_SECTOR, TAM_SECTOR, BIM_SI_SECTOR, BIM_NO_SECTOR,  PROP_SECTOR)
 probs = pisppt(as.numeric( TAM_SECTOR ),4)
 index = UPrandomsystematic(probs[[1]])
@@ -365,7 +377,7 @@ bim_result
 
 pik_2 =  probs[[2]][as.logical(index), as.logical(index)]
 diag(pik_2) = ppt_obras_pik 
-sta =  sqrt(varHT(ppt_obras_sample[,"PROP_SECTOR"] , pik_2)) / 14
+se =  sqrt( varHT(ppt_obras_sample[,"PROP_SECTOR"] , pik_2)  / 14 ) 
 
 alpha = 0.05
 z <- qnorm ( 1 - alpha / 2 )
@@ -400,39 +412,40 @@ sta =  sqrt(varHT(ppt_obras_sample[,"PROP_SECTOR"] , pik2_index, 2))
 
 
 
-  
+
 sum(subset(data.frame(table(ppt_sample$CONG)), Freq > 0)[ ,2 ])
 
 droplevels(ppt_sample, exclude = if(anyNA(levels(ppt_sample)))
-
-ppt_sample [ , fpc := .N , by = Estrato]
-
-
-
-
-dim(ppt_sample)
-head(ppt_sample)
-
-mstage(datatable, stage = list("cluster", "cluster"), varnames = list("DISTRITO", "SECTOR"), size = list())
-
-data(api)
-apipop[1:2,]
-dim(apipop)[1] # 6194
-
-apistrat[1:2, ]
-sum(unique(apistrat$fpc)) # 4421 1018 755 = 6194
-table(apistrat$stype) # 200
-dim(apistrat)[1] # 200
-head(apistrat)
-
-unique(apiclus1$fpc) # 757
-dim(apiclus1)[1] # 183
-apiclus1$dnum
-head(apiclus1)
-
-dim(apiclus2) # 126
-unique(apiclus2$fpc1) # 757
-table(apiclus2$fpc2) # 
-
-rbeta(1, 2, 8)
-runif(2)
+  
+  ppt_sample [ , fpc := .N , by = Estrato]
+  
+  
+  
+  
+  dim(ppt_sample)
+  head(ppt_sample)
+  
+  mstage(datatable, stage = list("cluster", "cluster"), varnames = list("DISTRITO", "SECTOR"), size = list())
+  
+  data(api)
+  apipop[1:2,]
+  dim(apipop)[1] # 6194
+  
+  apistrat[1:2, ]
+  sum(unique(apistrat$fpc)) # 4421 1018 755 = 6194
+  table(apistrat$stype) # 200
+  dim(apistrat)[1] # 200
+  head(apistrat)
+  
+  unique(apiclus1$fpc) # 757
+  dim(apiclus1)[1] # 183
+  apiclus1$dnum
+  head(apiclus1)
+  
+  dim(apiclus2) # 126
+  unique(apiclus2$fpc1) # 757
+  table(apiclus2$fpc2) # 
+  
+  rbeta(1, 2, 8)
+  runif(2)
+  
