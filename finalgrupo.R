@@ -200,19 +200,7 @@ datatable[which(datatable$ESTRATO == "CALLAO" & datatable$DISTRITO == "CALLAO" &
 datatable[which(datatable$ESTRATO == "CALLAO" & datatable$DISTRITO == "VENTANILLA" & datatable$SECTOR == "A" ), "NSECTOR" ] = 2
 # La perla
 
-# asumiendo modelo complejo tres etapas
-
-table(datatable$NESTRATO)
-table(datatable$NDISTRITO)
-table(datatable$NSECTOR)
-
-# W1 probabilidad de selecionar el estrato
-# W2 probabilidad de seleccionar el distrito dato que selecionamos el estrato
-# w3 probabilidad de seleccionar el sector dado que seleccionamos el distrito y el estrato
-
-NTotal_Estrato = sum(NESTRATO_LIMA_TOP, NESTRATO_LIMA_MODERNA, NESTRATO_LIMA_CENTRO, NESTRATO_LIMA_ESTE,
-                     NESTRATO_LIMA_NORTE, NESTRATO_LIMA_SUR, NESTRATO_CALLAO)
-
+# numero de conglomerados por estrato
 
 datatable[which(datatable$ESTRATO == "LIMA TOP" ), "NCONG" ] = 14
 datatable[which(datatable$ESTRATO == "LIMA MODERNA" ), "NCONG" ] = 15
@@ -222,23 +210,17 @@ datatable[which(datatable$ESTRATO == "LIMA NORTE" ), "NCONG" ] = 8
 datatable[which(datatable$ESTRATO == "LIMA SUR" ), "NCONG" ] = 8
 datatable[which(datatable$ESTRATO == "CALLAO" ), "NCONG" ] = 4
 
+
 datatable [ , FPC := NCONG ]
 datatable [ , FPC2 := NSECTOR ]
 
-datatable [ , WEIGHT_I := 1 / (NESTRATO / NTotal_Estrato) ] 
-datatable [ , WEIGHT_J_I := 1 / (NCONG / NESTRATO) ]
-datatable [ , WEIGHT_K_J_I := 1 / (NSECTOR / NCONG) ]
-datatable [ , WEIGHT := ( WEIGHT_J_I * WEIGHT_K_J_I)]
-
-
-
-# order by strato
 design = svydesign(id=~CONG + NUM, fpc = ~FPC + FPC2 , strata = ~ESTRATO, data = datatable)
 design
 
 # estaimacion por metodo tradicional linealizacion
 options(survey.lonely.psu = "adjust")
 mean = svymean(~BIM, design = design, deff = T)
+mean
 confint(mean)
 # estimacion JKN 
 jkn = as.svrepdesign(design=design, type="JKn")
@@ -248,7 +230,6 @@ boot = as.svrepdesign(design=design, type="subbootstrap")
 svymean(~BIM, design = boot, deff = T)
 
 # PART B 
-
 top_sample = datatable[which(datatable$ESTRATO == "LIMA TOP" ),  ] 
 top_design = svydesign(id=~~CONG + NUM, fpc = ~FPC + FPC2 , data = top_sample)
 top_mean = svymean(~BIM, design = top_design, deff = T)
@@ -378,74 +359,8 @@ bim_result
 pik_2 =  probs[[2]][as.logical(index), as.logical(index)]
 diag(pik_2) = ppt_obras_pik 
 se =  sqrt( varHT(ppt_obras_sample[,"PROP_SECTOR"] , pik_2)  / 14 ) 
-
+se
 alpha = 0.05
 z <- qnorm ( 1 - alpha / 2 )
-
 c(bim_result - z * sta, bim_result + sta)
 
-
-
-PIK <- inclusionprobabilities(TAM_SECTOR, 4)
-p_1[[1]]
-
-
-sum(PIK) # 4
-
-
-
-PIK2 = UPsystematicpi2(PIK)
-index = UPrandomsystematic(PIK)
-ppt_obras_sample = getdata(ppt_obras, index)
-bim_result = HTestimator(ppt_obras_sample[,"PROP_SECTOR"], ppt_obras_sample[,"PIK"]) 
-pik2_index = PIK2[as.logical(index), as.logical(index)]
-# stimated error sqrt of variance
-sta =  sqrt(varHT(ppt_obras_sample[,"PROP_SECTOR"] , pik2_index, 2))
-
-
-
-
-
-
-
-
-
-
-
-
-sum(subset(data.frame(table(ppt_sample$CONG)), Freq > 0)[ ,2 ])
-
-droplevels(ppt_sample, exclude = if(anyNA(levels(ppt_sample)))
-  
-  ppt_sample [ , fpc := .N , by = Estrato]
-  
-  
-  
-  
-  dim(ppt_sample)
-  head(ppt_sample)
-  
-  mstage(datatable, stage = list("cluster", "cluster"), varnames = list("DISTRITO", "SECTOR"), size = list())
-  
-  data(api)
-  apipop[1:2,]
-  dim(apipop)[1] # 6194
-  
-  apistrat[1:2, ]
-  sum(unique(apistrat$fpc)) # 4421 1018 755 = 6194
-  table(apistrat$stype) # 200
-  dim(apistrat)[1] # 200
-  head(apistrat)
-  
-  unique(apiclus1$fpc) # 757
-  dim(apiclus1)[1] # 183
-  apiclus1$dnum
-  head(apiclus1)
-  
-  dim(apiclus2) # 126
-  unique(apiclus2$fpc1) # 757
-  table(apiclus2$fpc2) # 
-  
-  rbeta(1, 2, 8)
-  runif(2)
-  
