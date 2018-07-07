@@ -24,12 +24,8 @@
 # decir, cuando vea que el numero de obras encuestadas es 0), impute esta proporcion simulando ella de una
 # distribucion Beta de parametros alpha = 2 y beta = 8. (2.0 puntos)
 
-
+# setear carpeta con DATAEX.csv
 setwd("F:/muestreo")
-
-setwd("/Users/gvalderrama/Documents/muestreo/")
-
-setwd("/Users/gregory/Documents/pucp/muestreo/")
 
 install.packages("data.table")
 install.packages("sampling")
@@ -217,10 +213,10 @@ design = svydesign(id=~CONG + NUM, fpc = ~FPC + FPC2 , strata = ~ESTRATO, data =
 design
 
 # estaimacion por metodo tradicional linealizacion
-options(survey.lonely.psu = "adjust")
 mean = svymean(~BIM, design = design, deff = T)
 mean
 confint(mean)
+
 # estimacion JKN 
 jkn = as.svrepdesign(design=design, type="JKn")
 svymean(~BIM, design = jkn, deff = T)
@@ -355,43 +351,36 @@ ppt_obras = as.data.table(ppt_obras)
 ppt_obras[, phi :=  TAM_SECTOR / sum(TAM_SECTOR) ]
 ppt_obras[, phi2 := cumsum(phi) ]
 
-runif(4)  # 0.11016850 0.95160297 0.02318828 0.43512783
+# runif(4)  0.11016850 0.95160297 0.02318828 0.43512783
 
 # seccion segundo elemnto 2 
-sample_a  = ppt_obras[2, ]
 ppt_obras = ppt_obras[-2, ]
 
 ppt_obras[, phi :=  TAM_SECTOR / sum(TAM_SECTOR) ]
 ppt_obras[, phi2 := cumsum(phi) ]
 
-sample_b  = ppt_obras[13, ]
 ppt_obras = ppt_obras[-13, ]
 
 ppt_obras[, phi :=  TAM_SECTOR / sum(TAM_SECTOR) ]
 ppt_obras[, phi2 := cumsum(phi) ]
 
-sample_c  = ppt_obras[1, ]
 ppt_obras = ppt_obras[-1, ]
 
 ppt_obras[, phi :=  TAM_SECTOR / sum(TAM_SECTOR) ]
 ppt_obras[, phi2 := cumsum(phi) ]
 
-sample_d  = ppt_obras[5, ]
 ppt_obras = ppt_obras[-5, ]
 
-
 ppt_obras = data.frame(DIS_SECTOR, TAM_SECTOR, BIM_SI_SECTOR, BIM_NO_SECTOR,  PROP_SECTOR)
-ppt_obras = as.data.table(ppt_obras)
 
 index = rep(0, 14)
-
 index[2] = 1
 index[13] = 1
 index[1] = 1
 index[5] = 1
 
-probs = pisppt(as.numeric( TAM_SECTOR ),4)
 ppt_obras_sample = getdata(ppt_obras, index)
+probs = pisppt(as.numeric( TAM_SECTOR ),4)
 ppt_obras_pik = getdata(probs[[1]], as.logical(index))[, "data"]
 
 bim_result = HTestimator(ppt_obras_sample[,"PROP_SECTOR"], ppt_obras_pik) / 14
@@ -399,9 +388,12 @@ bim_result
 
 pik_2 =  probs[[2]][as.logical(index), as.logical(index)]
 diag(pik_2) = ppt_obras_pik 
-se =  sqrt( varHT(ppt_obras_sample[,"PROP_SECTOR"] , pik_2)   ) 
-se = se / 14
+se =  sqrt( varHT(ppt_obras_sample[,"PROP_SECTOR"] , pik_2) ) / 14
+se 
+
 alpha = 0.05
 z <- qnorm ( 1 - alpha / 2 )
 c(bim_result - z * se, bim_result + se)
+
+
 
